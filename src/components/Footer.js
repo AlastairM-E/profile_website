@@ -1,6 +1,8 @@
 /*IMPORTS*/
 import React from 'react'; 
 
+import { NavLink, } from 'react-router-dom';
+
 import { Table, Paper, TableHead, TableRow, TableCell, Link, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { lightBlue, grey, } from '@material-ui/core/colors';
@@ -53,7 +55,7 @@ export default function Footer() {
                         return (
                             <TableRow className={classes.tableLinks}>
                                 <TableCell className={[ classes.tableCell, classes.tableLinks,]}>
-                                    <Link href={`http://localhost:8080/${linksToSite}`} className={classes.tableLinks}>{linksToSite}</Link>
+                                    <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>{linksToSite}</NavLink>
                                 </TableCell>
                                 <TableCell className={[classes.tableCell, classes.tableLinks,]}>
                                     <Link href={href} className={classes.tableLinks}> {title} {icon}</Link>

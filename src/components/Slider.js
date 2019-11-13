@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef, Fragment,  } from 'react';
 
-import { Paper, Typography, Grid, Fab, } from '@material-ui/core';
+import { Paper, Typography, Grid, Fab, Link, } from '@material-ui/core';
 import { grey, lightBlue, } from '@material-ui/core/colors';
 import { makeStyles, } from '@material-ui/core/styles';
 
@@ -23,7 +23,7 @@ export default function SlideShow() {
             background:lightBlue[500],
         },
         buttonArray : {
-            marginLeft : '15%',
+            marginLeft : '17.5%',
         },
         Grid : {
             flexGrow : 1,
@@ -31,26 +31,37 @@ export default function SlideShow() {
         },
         Slide : {
             height : '50vh',
-            display : 'flex',
         },
         SlideTitle : {
             fontSize: 36,
+            margin: '5px',
+            padding: '5px',
+            borderBottom :'2.5px solid black',
         },
         SlideContent : {
             fontSize: 24,
             margin: '5%'
         },
-        SlideHr : {
-            marginLeft : '5%',
-        },
+        
     }));
 
     /* HOOKS */
 
     const slides = [
-        { title : 'About me', },
-        { title : 'What I will deliver', },
-        { title : 'Portofolio Projects', },
+        { title : 'About me', content : <Typography>
+            I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React
+        </Typography>, },
+        { title : 'What I strive for', content : <Typography>
+            I aim to produce great user interfaces that help websites reach their full potential.
+            </Typography>,},
+        { 
+            title : 'Portfolio Projects', content : <Typography>
+                Here are some of my projects.
+                <br />
+                <Link href={'http://localhost:8080/'}>learn more</Link>
+            </Typography>, 
+            href : 'Portfolio',
+        },
     ];
 
     // useContext & useState
@@ -99,7 +110,7 @@ export default function SlideShow() {
     /* Slide COMPONENT */
     const Slide = () => {  
         if (Array.isArray(slides)) {
-            const { title, } = slides[slideState];
+            const { title, content } = slides[slideState];
 
             return ( 
                 <Grid xs={11} sm={10}>
@@ -107,10 +118,9 @@ export default function SlideShow() {
                         <Typography variant='h3' className={classes.SlideTitle}>
                             {`${title}`}
                         </Typography>
-                        <hr className={classes.SlideHr} />
                         <br />
                         <Typography className={classes.SlideContent}>
-                            
+                            {content}
                         </Typography>
                     </Paper>
                 </Grid>
