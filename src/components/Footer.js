@@ -3,29 +3,40 @@ import React from 'react';
 
 import { NavLink, } from 'react-router-dom';
 
-import { Table, Paper, TableHead, TableRow, TableCell, Link, } from '@material-ui/core';
+import { Table, Paper, TableHead, TableRow, TableCell, Link, Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { lightBlue, grey, } from '@material-ui/core/colors';
 
-import GitHubIcon from '@material-ui/icons/GitHub';
-
 const useStyles = makeStyles({
     root: {
-      width: '100%',
-      overflowX: 'auto',
+        width: '100%',
+        overflowX: 'auto',
     },
     table: {
       minWidth: 650,
       background : lightBlue[400],
+      padding : '100px',
+      
     },
-
+    Title : {
+        color : grey[50],
+        padding : '8px 10px 8px 10px',
+    },
     tableCell : {
         color : grey[50],
-        padding : '8px 10px',
+        padding : '8px 10px 8px 10px',
+        border : 'none',
+    },
+    tableTitle : {
+        color : grey[50],
+        
     },
     tableLinks : {
-        border : 'none',
         color : grey[50],
+        textDecoration: 'none',
+        '&:hover' : {
+            textDecoration: 'underline',
+        }
     },
     icon : {
         marginUp : '10px',
@@ -38,8 +49,8 @@ export default function Footer() {
     const classes = useStyles();
 
     const footerRows = [
-        { linksToSite : 'Home', socialMedia : ['https://github.com/AlastairM-E', 'Github',  <GitHubIcon className={classes.icon} />], },
-        { linksToSite : 'About', socialMedia : ['https://medium.com/@alastairunityemail', 'Medium', ''], },
+        { linksToSite : 'Home', socialMedia : ['https://github.com/AlastairM-E', 'Github',], },
+        { nameTitle : <Typography className={classes.Title}>AlastairM-E</Typography>, linksToSite : 'About', socialMedia : ['https://medium.com/@alastairunityemail', 'Medium',], },
         { linksToSite : 'Contact', socialMedia : [''], },
     ];
 
@@ -48,17 +59,20 @@ export default function Footer() {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow >
-                        <TableCell className={classes.tableCell}>Site Navigation</TableCell>
-                        <TableCell className={classes.tableCell}>Social Media</TableCell>
+                    <Typography></Typography>
+                        <Typography className={classes.Title}>AlastairM-E</Typography>
+                        <TableCell className={classes.tableTitle}>Site Navigation</TableCell>
+                        <TableCell className={classes.tableTitle}>Social Media</TableCell>
                     </TableRow>
-                    {footerRows.map(({ linksToSite, socialMedia : [href, title, icon] }) => {
+                    {footerRows.map(({nameTitle, linksToSite, socialMedia : [href, title] }) => {
                         return (
-                            <TableRow className={classes.tableLinks}>
-                                <TableCell className={[ classes.tableCell, classes.tableLinks,]}>
+                            <TableRow>
+                                <TableCell className={classes.tableCell}></TableCell>
+                                <TableCell className={classes.tableCell}>
                                     <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>{linksToSite}</NavLink>
                                 </TableCell>
-                                <TableCell className={[classes.tableCell, classes.tableLinks,]}>
-                                    <Link href={href} className={classes.tableLinks}> {title} {icon}</Link>
+                                <TableCell className={classes.tableCell}>
+                                    <Link href={href} className={classes.tableLinks}> {title} </Link>
                                 </TableCell>
                             </TableRow>
                         );

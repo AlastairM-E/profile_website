@@ -5,61 +5,77 @@ import { Paper, Typography, Grid, Fab, Link, } from '@material-ui/core';
 import { grey, lightBlue, } from '@material-ui/core/colors';
 import { makeStyles, } from '@material-ui/core/styles';
 
-/* COMPONENT */
-export default function SlideShow() {
-
-    /* STYLES */
-    const useStyles = makeStyles(theme => ({
-        Fab : {
-            margin : '3.5% 1% 1% 1%',
-            background : grey[300],
-            height : '23px',
-            width : '34px',
-            '&:hover' : {
-                background:lightBlue[500],
-            },
-        },
-        FabActive : {
+/* STYLES */
+const useStyles = makeStyles(theme => ({
+    Fab : {
+        margin : '3.5% 1% 1% 1%',
+        background : grey[300],
+        height : '23px',
+        width : '34px',
+        '&:hover' : {
             background:lightBlue[500],
         },
-        buttonArray : {
-            marginLeft : '17.5%',
+    },
+    FabActive : {
+        background:lightBlue[500],
+    },
+    buttonArray : {
+        [theme.breakpoints.between('lg', 'xl')]: {
+            marginLeft : '0%',
         },
-        Grid : {
-            flexGrow : 1,
-            margin: '10px',
+        [theme.breakpoints.between('md', 'lg')]: {
+            marginLeft : '10%',
         },
-        Slide : {
-            height : '50vh',
+        [theme.breakpoints.between('sm', 'md')]: {
+            marginLeft : '18%',
         },
-        SlideTitle : {
-            fontSize: 36,
-            margin: '5px',
-            padding: '5px',
-            borderBottom :'2.5px solid black',
+        [theme.breakpoints.between('xs', 'sm')]: {
+            marginLeft : '35%',
         },
-        SlideContent : {
-            fontSize: 24,
-            margin: '5%'
-        },
-        
-    }));
+    },
+    Grid : {
+        flexGrow : 1,
+       margin : '13px 0px',
+       width: '100%',
+    },
+    Slide : {
+        height : '50vh',
+    },
+    SlideTitle : {
+        fontSize: 36,
+        margin: '5px',
+        padding: '5px',
+        borderBottom :'2.5px solid black',
+    },
+    SlideContent : {
+        fontSize: 24,
+        margin: '5%'
+    },
+    
+}));
+
+
+/* COMPONENT */
+export default function SlideShow() {
 
     /* HOOKS */
 
     const slides = [
-        { title : 'About me', content : <Typography>
-            I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React
-        </Typography>, },
-        { title : 'What I strive for', content : <Typography>
-            I aim to produce great user interfaces that help websites reach their full potential.
-            </Typography>,},
         { 
-            title : 'Portfolio Projects', content : <Typography>
-                Here are some of my projects.
-                <br />
-                <Link href={'http://localhost:8080/'}>learn more</Link>
-            </Typography>, 
+            title : 'About me', 
+            content : <Typography> I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React </Typography>, 
+        },
+        { 
+            title : 'What I strive for', 
+            content : <Typography> I aim to produce great user interfaces that help websites reach their full potential.</Typography>,
+        },
+        { 
+            title : 'Portfolio Projects', content : 
+                <Typography>
+                    Here are some of my projects.
+                    <br />
+                    <Link href={'http://localhost:8080/'}>learn more</Link>
+                </Typography>, 
             href : 'Portfolio',
         },
     ];
