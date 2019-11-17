@@ -5,7 +5,7 @@ import { NavLink, } from 'react-router-dom';
 
 import { AppBar, Toolbar, Typography, Link, } from '@material-ui/core';
 import { makeStyles, } from '@material-ui/core/styles';
-import { lightBlue, grey, } from '@material-ui/core/colors';
+import { lightBlue, } from '@material-ui/core/colors';
 
 /* STYLES */
 const useStyles = makeStyles(theme => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     navLink : {
-        color : grey[50],
+        color : 'white',
         textDecoration: 'none',
         margin : '0px 10px',
         '&:hover' : {
@@ -37,8 +37,8 @@ export default function Navbar() {
             <Toolbar>
                 <Typography  varient='h6' className={classes.Title}>Alastair M-E</Typography>
                     <NavLink to='/' className={classes.navLink}>Home</NavLink>
-                    <NavLink to='/About' className={classes.navLink}>About</NavLink>
-                    <NavLink to='/Contact' className={classes.navLink}>Contact</NavLink>
+                    <Link href='#About' className={classes.navLink}>About</Link>
+                    <Link href='#Contact' className={classes.navLink}>Contact</Link>
                     <Link href='https://medium.com/@alastairunityemail' className={classes.navLink}>Blog</Link>
                     <NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink>        
             </Toolbar>

@@ -42,13 +42,13 @@ const useStyles = makeStyles(theme => ({
         height : '50vh',
     },
     SlideTitle : {
-        fontSize: 36,
+        fontSize: 48,
         margin: '5px',
         padding: '5px',
         borderBottom :'2.5px solid black',
     },
     SlideContent : {
-        fontSize: 24,
+        fontSize: 36,
         margin: '5%'
     },
     
@@ -60,26 +60,6 @@ export default function SlideShow() {
 
     /* HOOKS */
 
-    const slides = [
-        { 
-            title : 'About me', 
-            content : <Typography> I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React </Typography>, 
-        },
-        { 
-            title : 'What I strive for', 
-            content : <Typography> I aim to produce great user interfaces that help websites reach their full potential.</Typography>,
-        },
-        { 
-            title : 'Portfolio Projects', content : 
-                <Typography>
-                    Here are some of my projects.
-                    <br />
-                    <Link href={'http://localhost:8080/'}>learn more</Link>
-                </Typography>, 
-            href : 'Portfolio',
-        },
-    ];
-
     // useContext & useState
     const [slideState, setSlideState] = useState(0);
     const [resetTime  , setResetTime] = useState(0);
@@ -87,6 +67,26 @@ export default function SlideShow() {
     const classes = useStyles();
 
     const slideShowPace = 3000;
+
+    const slides = [
+        { 
+            title : 'Overview of what I do', 
+            content : <Typography className={classes.SlideContent}> I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React </Typography>, 
+        },
+        { 
+            title : 'My aim', 
+            content : <Typography className={classes.SlideContent}> I aim to produce great user interfaces that help websites reach their full potential.</Typography>,
+        },
+        { 
+            title : 'Portfolio Projects', content : 
+                <Typography className={classes.SlideContent}>
+                    Here are some of my projects.
+                    <br />
+                    <Link href={'http://localhost:8080/'}>learn more</Link>
+                </Typography>, 
+            href : 'Portfolio',
+        },
+    ];
 
     // useInterval
     function useInterval(callback, delay) {
@@ -135,7 +135,7 @@ export default function SlideShow() {
                             {`${title}`}
                         </Typography>
                         <br />
-                        <Typography className={classes.SlideContent}>
+                        <Typography>
                             {content}
                         </Typography>
                     </Paper>
