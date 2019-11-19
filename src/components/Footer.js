@@ -49,9 +49,20 @@ export default function Footer() {
     const classes = useStyles();
 
     const footerRows = [
-        { linksToSite : 'Home', socialMedia : ['https://github.com/AlastairM-E', 'Github',], },
-        { nameTitle : <Typography className={classes.Title}>AlastairM-E</Typography>, linksToSite : 'About', socialMedia : ['https://medium.com/@alastairunityemail', 'Medium',], },
-        { linksToSite : 'Contact', socialMedia : [''], },
+        { 
+            linksToSite : 'Home', 
+            socialMedia : [
+                'https://github.com/AlastairM-E', 
+                'Github',
+            ], 
+        },
+        { 
+            linksToSite : 'Portfolio',
+             socialMedia : [
+                'https://medium.com/@alastairunityemail',
+                'Medium',
+            ], 
+        },
     ];
 
     return (
@@ -64,15 +75,19 @@ export default function Footer() {
                         <TableCell className={classes.tableTitle}>Site Navigation</TableCell>
                         <TableCell className={classes.tableTitle}>Social Media</TableCell>
                     </TableRow>
-                    {footerRows.map(({nameTitle, linksToSite, socialMedia : [href, title] }) => {
+                    {footerRows.map(({linksToSite, socialMedia : [href, title] }) => {
                         return (
                             <TableRow>
                                 <TableCell className={classes.tableCell}></TableCell>
                                 <TableCell className={classes.tableCell}>
-                                    <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>{linksToSite}</NavLink>
+                                    <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>
+                                        {linksToSite}
+                                    </NavLink>
                                 </TableCell>
                                 <TableCell className={classes.tableCell}>
-                                    <Link href={href} className={classes.tableLinks}> {title} </Link>
+                                    <Link href={href} className={classes.tableLinks}>
+                                        {title}
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         );

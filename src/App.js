@@ -11,6 +11,8 @@ import { Navbar, Slider, About, Contact, Footer, Portfolio, } from './components
 
 import { makeStyles, } from '@material-ui/core/styles';
 
+
+
 /* STYLES */
 const useStyles = makeStyles(theme => ({
     centerPiece : {

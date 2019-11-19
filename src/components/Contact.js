@@ -28,7 +28,7 @@ export default function Contact() {
 
     return (
         <div className={classes.contact}>
-            <Typography className={classes.textBox}>Want to get in touch?</Typography>
+            <Typography className={classes.textBox}>Want to get in touch? - haven't got the CV to download yet</Typography>
             <Divider />
             <Button className={classes.emailButton} variant="contained" color="primary" href='mailto:alastair.me.work@gmail.com'>Email Me</Button>
             <div id="Contact"></div>

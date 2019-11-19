@@ -14,6 +14,9 @@ import {
     Divider, 
     Button,
 } from '@material-ui/core';
+
+import pdf from './../CV--19.11.18--v0.4.pdf';
+
 import { makeStyles, } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
 
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         margin : '10px',
     },
     card : {
-        height : '280px',
+        height : '290px',
         width: '90%',
         margin : '10px 0px'
     },
@@ -78,7 +81,7 @@ export default function About() {
     const classes = useStyles();
     const [techKnow, techExperienced] = [
         [['HTML, ', 'CSS, ', 'SASS, ', 'JavaScript, ', 'React, ', 'Git.']],
-        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel.']],
+        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel, ', 'React Router.']],
     ];
     const sections = [
         {
@@ -140,7 +143,7 @@ export default function About() {
                 title : 'Work',
                 subheader : 'Here my CV if your interested',
                 content : <div className={classes.workSection}>
-                    <Button  variant="contained" color="primary" href='https://www.google.com/'>
+                    <Button  variant="contained" color="primary" href={pdf}>
                         Download my CV
                     </Button>
                 </div>
