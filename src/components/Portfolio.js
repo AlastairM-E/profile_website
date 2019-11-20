@@ -14,6 +14,8 @@ import {
     Link,
 } from '@material-ui/core';
 
+import { NavLink, } from 'react-router-dom';
+
 import { makeStyles, } from '@material-ui/core/styles';
 import { lightBlue, } from '@material-ui/core/colors';
 
@@ -51,18 +53,21 @@ export default function Portfolio() {
 
     const projects = [
         { 
-            icon : <CodeIcon href='/CasinoJS'/>, 
+            icon : <CodeIcon href='https://github.com/AlastairM-E/CasinoJS/tree/CasinoJSv0.5' />, 
             title : 'BlackJack Simulator', 
             techUsed : 'Tech used : HTML, CSS, SASS, JavaScript, React, Git ',
-            linkToProject : <Link href='/CasinoJS'>Demo here</Link>,
+            linkToProject : 
+                <Fragment>
+                    <NavLink to='/CasinoJS'>Demo here</NavLink> | <Link href='https://github.com/AlastairM-E/CasinoJS/tree/CasinoJSv0.5'>Visit Github page here</Link>
+                </Fragment>,
             madeIn : 'September 2019 to current',
             description : `The user can play against (very basic) AI to play a dumbed down version of blackjack.`,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/profile_website/tree/PWv0.3' />, 
+            icon : <GitHubIcon href='https://github.com/AlastairM-E/profile_website/tree/PWv0.4' />, 
             title : 'Profile webiste (aka, this site)', 
             techUsed : 'Tech used : HTML, CSS, Material-UI, JavaScript, React, React-router-dom, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv0.3'>Vist GitHub page here</Link>,
+            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv0.4'>Vist GitHub page here</Link>,
             madeIn : 'July 2019 to current',
             description : 
                 `A website that is able to show offer various project I 
@@ -83,7 +88,7 @@ export default function Portfolio() {
             ,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1' />, 
+            icon : <GitHubIcon href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1' />,
             title : 'PHP chat application', 
             techUsed : 'Tech used : HTML, CSS, JavaScript, PHP, MYSQL, Git ',
             linkToProject : <Link href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1'>Vist GitHub page here</Link>,

@@ -41,6 +41,9 @@ module.exports = webpackMerge(common, {
                             '@babel/preset-env',
                             '@babel/preset-react',
                         ],
+                        plugins : [
+                            '@babel/plugin-syntax-dynamic-import',
+                        ],
                     },
                 },
             },

@@ -23,6 +23,9 @@ module.exports = webpackMerge(common, {
                         presets: [
                             '@babel/preset-react',
                         ],
+                        plugins : [
+                            '@babel/plugin-syntax-dynamic-import',
+                        ],
                     },
                 },
             },

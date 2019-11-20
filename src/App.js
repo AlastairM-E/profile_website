@@ -1,5 +1,5 @@
 /*IMPORTS*/
-import React from 'react'; 
+import React, { Suspense } from 'react'; 
 
 import {
     BrowserRouter as Router,
@@ -7,9 +7,10 @@ import {
     Route,
 } from "react-router-dom";
 
-import { Navbar, Slider, About, Contact, Footer, Portfolio, } from './components';
+import { Navbar, Slider, About, Contact, Footer, } from './components';
 
 import { makeStyles, } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 
 
@@ -28,6 +29,11 @@ export default function App() {
     /* HOOKS */
     const classes = useStyles();
 
+    /* LAZY LOAD COMPONENTS */
+    const LazyPortfolio = React.lazy(() => import('./components/Portfolio'));
+    const LazyBoard = React.lazy(() => import('./components/Board'));
+
+    /* RENDER */
     return (
         <Router>
             <div className="app">
@@ -36,8 +42,17 @@ export default function App() {
                     <Switch>
                         <Route exact path="/" component={Slider} />
                         <Route path="/Portfolio"> 
+                            <div className={classes.centerPiece + 'grid'}>
+                            <Suspense fallback={<Typography>Loading, Loading, Loading...</Typography>}>
+                                    <LazyPortfolio />
+                                </Suspense>
+                            </div>
+                        </Route>
+                        <Route path="/CasinoJS"> 
                             <div className={classes.centerPiece}>
-                                <Portfolio />
+                            <Suspense fallback={<Typography>Loading, Loading, Loading...</Typography>}>
+                                    <LazyBoard />
+                                </Suspense>
                             </div>
                         </Route>
                     </Switch>
