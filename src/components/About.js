@@ -40,9 +40,20 @@ const useStyles = makeStyles(theme => ({
         margin : '10px',
     },
     card : {
-        height : '290px',
+        heihgt : '290px',
         width: '90%',
-        margin : '10px 0px'
+        margin : '10px 0px',
+
+        [theme.breakpoints.between('md', 'lg')]: {
+            height : '290px',
+        },
+        [theme.breakpoints.between('sm', 'md')]: {
+            height : '350px',
+        },
+        [theme.breakpoints.between('xs', 'sm')]: {
+            height : '290px',
+            marginLeft : '2.5%'
+        },
     },
     cardIcon : {
         background : lightBlue['A200'],
@@ -63,8 +74,12 @@ const useStyles = makeStyles(theme => ({
         marginTop : '10%',
     },
     workSection : {
-        marginTop : '15%',
+        display : 'flex',
+        alignItems : 'center',
+        justifyContent : 'center',
         textAlign : 'center',
+        width : '100%',
+        height : '70%',
     },
     cardContentNested : {
         paddingLeft: theme.spacing(4),
@@ -81,7 +96,7 @@ export default function About() {
     const classes = useStyles();
     const [techKnow, techExperienced] = [
         [['HTML, ', 'CSS, ', 'SASS, ', 'JavaScript, ', 'React, ', 'Git.']],
-        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel, ', 'React Router.']],
+        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel.']],
     ];
     const sections = [
         {
@@ -129,10 +144,9 @@ export default function About() {
                 title : 'Me as a person',
                 subheader : 'Who I actually am',
                 content : <Typography className={classes.personSection}> 
-                    Hello, I am Alastair Mottram Epson. I am web developer, keen runner and baker. 
-                    I am looking for ambitious project and people to collbrate with, who truly want
+                    Hello, I am Alastair Mottram-Epson. I am web developer, keen runner and baker. 
+                    I am looking for ambitious people & projects to collaborate with, who truly want
                     to make a positive difference in this world.
-                    
                 </Typography>
                 
             }
@@ -141,8 +155,9 @@ export default function About() {
             icon : <WorkIcon />,
             section : {
                 title : 'Work',
-                subheader : 'Here my CV if your interested',
-                content : <div className={classes.workSection}>
+                subheader : 'Here my CV, if your interested',
+                content : 
+                <div className={classes.workSection}>
                     <Button  variant="contained" color="primary" href={pdf}>
                         Download my CV
                     </Button>
@@ -161,7 +176,7 @@ export default function About() {
                 </Grid>
                     {sections.map(({ icon, section : { title, subheader, content, }, }) => {
                         return (
-                            <Grid xs={12} sm={4} item ={4}>
+                            <Grid xs={12} sm={12} md={4}>
                                 <Card className={classes.card}>
                                     <CardHeader
                                         title={title}

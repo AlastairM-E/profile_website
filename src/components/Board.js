@@ -70,7 +70,6 @@ export default function Board() {
                     setCurrentPlayer(rankHand(currentPlayer, 'hand', 'handValue', 'hasLost')),
                     setTurn(rotateTurn(turn)),
                 ]) : null;*/
-
                 runAdv();
             }}> run a turn</button>
             <Opponents opponent={opponent} />

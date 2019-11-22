@@ -61,18 +61,18 @@ export default function Portfolio() {
                     <NavLink to='/CasinoJS'>Demo here</NavLink> | <Link href='https://github.com/AlastairM-E/CasinoJS/tree/CasinoJSv0.5'>Visit Github page here</Link>
                 </Fragment>,
             madeIn : 'September 2019 to current',
-            description : `The user can play against (very basic) AI to play a dumbed down version of blackjack.`,
+            description : `A website in which a user can play against a (very basic) AI to play a dumbed down version of blackjack (no ability to control turns).`,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/profile_website/tree/PWv0.4' />, 
+            icon : <GitHubIcon href='https://github.com/AlastairM-E/profile_website/tree/PWv0.6' />, 
             title : 'Profile webiste (aka, this site)', 
             techUsed : 'Tech used : HTML, CSS, Material-UI, JavaScript, React, React-router-dom, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv0.4'>Vist GitHub page here</Link>,
+            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv0.6'>Vist GitHub page here</Link>,
             madeIn : 'July 2019 to current',
             description : 
-                `A website that is able to show offer various project I 
-                have developed for fun and show potential employers what 
-                I do and whom I am.`
+                `A website that is able to show off various projects I 
+                have developed for fun and show potential employers
+                who I am and what I can do.`
             ,
         },
         { 
@@ -82,8 +82,8 @@ export default function Portfolio() {
             linkToProject : <Link href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'>Vist GitHub here</Link>,
             madeIn : 'March 2019',
             description : 
-                `Enables a user, using a terminal by executing the file in python, 
-                to be prompt a series of questions by a CLI, whcich will lead to 
+                `Enables a user, executing the file in python by a terminal, 
+                to be prompt a series of questions by a CLI, which will lead to 
                 the creation of a planning document (txt file)`
             ,
         },
@@ -92,11 +92,11 @@ export default function Portfolio() {
             title : 'PHP chat application', 
             techUsed : 'Tech used : HTML, CSS, JavaScript, PHP, MYSQL, Git ',
             linkToProject : <Link href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1'>Vist GitHub page here</Link>,
-            madeIn : 'June 2018 to October 2018',
+            madeIn : 'June 2018 to January 2019',
             description : 
                 `Enables a user to create an account, 
-                sign in with said account to a posting page and then 
-                post comments which others user of the website can 
+                sign in with said account to a 'chat room' and then 
+                post comments which others users of the website can 
                 see (not from the same computer)`
             ,
         },
@@ -113,8 +113,6 @@ export default function Portfolio() {
                                 <ExpansionPanel className={classes.accordian}>
                                     <ExpansionPanelSummary
                                         expandIcon={<ExpandMoreIcon className={classes.expandButton} />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
                                         className={classes.panelSummary}
                                     >
                                     

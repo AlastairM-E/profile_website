@@ -3,7 +3,7 @@ import React from 'react';
 
 import { NavLink, } from 'react-router-dom';
 
-import { Table, Paper, TableHead, TableRow, TableCell, Link, Typography, } from '@material-ui/core';
+import { Table, Grid, Paper, TableHead, TableRow, TableCell, Link, Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { lightBlue, grey, } from '@material-ui/core/colors';
 
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
         overflowX: 'auto',
     },
     table: {
-      minWidth: 650,
+      minWidth: 450,
       background : lightBlue[400],
       padding : '100px',
       
@@ -59,43 +59,45 @@ export default function Footer() {
         { 
             linksToSite : 'Portfolio',
              socialMedia : [
-                'https://medium.com/@alastairunityemail',
+                'https://medium.com/@alastair.me.blog',
                 'Medium',
             ], 
         },
     ];
 
     return (
-        <Paper className={classes.root}>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow >
-                    <Typography></Typography>
-                        <Typography className={classes.Title}>AlastairM-E</Typography>
-                        <TableCell className={classes.tableTitle}>Site Navigation</TableCell>
-                        <TableCell className={classes.tableTitle}>Social Media</TableCell>
-                    </TableRow>
-                    {footerRows.map(({linksToSite, socialMedia : [href, title] }) => {
-                        return (
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                    
                             <TableRow>
-                                <TableCell className={classes.tableCell}></TableCell>
-                                <TableCell className={classes.tableCell}>
-                                    <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>
-                                        {linksToSite}
-                                    </NavLink>
-                                </TableCell>
-                                <TableCell className={classes.tableCell}>
-                                    <Link href={href} className={classes.tableLinks}>
-                                        {title}
-                                    </Link>
-                                </TableCell>
+                                    
+                                    <Typography></Typography>
+                                    <Typography className={classes.Title}>AlastairM-E</Typography>
+                                    <TableCell className={classes.tableTitle}>Site Navigation</TableCell>
+                                    <TableCell className={classes.tableTitle}>Social Media</TableCell>
+                                
                             </TableRow>
-                        );
-                    })}
-                </TableHead>
-            </Table>
-        </Paper>
-        
+                            {footerRows.map(({linksToSite, socialMedia : [href, title] }) => {
+                                return (
+                                    <TableRow>
+                                        <TableCell className={classes.tableCell}></TableCell>
+                                        <TableCell className={classes.tableCell}>
+                                            <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>
+                                                {linksToSite}
+                                            </NavLink>
+                                        </TableCell>
+                                        <TableCell className={classes.tableCell}>
+                                            <Link href={href} className={classes.tableLinks}>
+                                                {title}
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })}
+                    </TableHead>
+                </Table>
+            </Paper>
     ); 
 
 };

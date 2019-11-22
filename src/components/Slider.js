@@ -40,6 +40,12 @@ const useStyles = makeStyles(theme => ({
     },
     Slide : {
         height : '50vh',
+        [theme.breakpoints.between('sm', 'md')]: {
+            height : '60vh',
+        },
+        [theme.breakpoints.between('xs', 'sm')]: {
+            height : '70vh',
+        },
     },
     SlideTitle : {
         fontSize: 48,
@@ -66,25 +72,31 @@ export default function SlideShow() {
     const [shouldReset, setShouldReset ] = useState(false);
     const classes = useStyles();
 
-    const slideShowPace = 3000;
+    const slideShowPace = 4500;
 
     const slides = [
         { 
-            title : 'Overview of what I do', 
-            content : <Typography className={classes.SlideContent}> I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React </Typography>, 
+            title : 'An overview of what I do', 
+            content : 
+                <Typography className={classes.SlideContent}> 
+                    I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React.
+                </Typography>, 
         },
         { 
             title : 'My aim', 
-            content : <Typography className={classes.SlideContent}> I aim to produce great user interfaces that help websites reach their full potential.</Typography>,
+            content : 
+                <Typography className={classes.SlideContent}> 
+                    I aim to produce great user interfaces, that help ambitious people & projects reach their full potential.
+                </Typography>,
         },
         { 
-            title : 'Portfolio Projects', content : 
+            title : 'Portfolio Projects', 
+            content : 
                 <Typography className={classes.SlideContent}>
                     Here are some of my projects.
                     <br />
-                    <Link href={'http://localhost:8080/'}>learn more</Link>
+                    <Link href='/Portfolio'>learn more</Link>
                 </Typography>, 
-            href : 'Portfolio',
         },
     ];
 
