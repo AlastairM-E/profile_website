@@ -59,8 +59,7 @@ export default function Footer() {
         { 
             linksToSite : 'Portfolio',
              socialMedia : [
-                'https://medium.com/@alastair.me.blog',
-                'Medium',
+                
             ], 
         },
     ];

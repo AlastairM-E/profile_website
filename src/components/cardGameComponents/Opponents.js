@@ -9,6 +9,7 @@ export default function Opponents({ opponent, }) {
     /* RENDER */
     return (
         <div className="opponents flexbox">
+            Opponent Hand
             {renderHand(opponent.hand, 'back',)}
         </div>
     ); 

@@ -6,7 +6,7 @@ export default function Deck({ drawFromDeck, }) {
     
     /* RENDER */
     return (
-        <div className="deck" onClick={drawFromDeck}></div>
+        <div className="deck" onClick={drawFromDeck}>Deck</div>
     ); 
 
 };

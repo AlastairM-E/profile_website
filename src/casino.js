@@ -137,11 +137,9 @@ const standardDeck = {
     };
 
     function rankHand(thisPlayer, hand, handValue, hasLost) {
-        console.log('start', thisPlayer[hand], hand, handValue, hasLost);
         const rankOfHand = thisPlayer[hand].reduce((sumOfRank, card) => sumOfRank + card.rank,0);
         thisPlayer[handValue] = rankOfHand;
         thisPlayer[hasLost] = rankOfHand > 21 ?  true : false;
-        console.log(thisPlayer);
         return thisPlayer;
     };
 
@@ -155,43 +153,6 @@ const standardDeck = {
         phaseArray.forEach(phase => phase);
     };
 
-    function useRunPhase(phaseArray){
-
-    // keep track of what phrase it is.
-    const [phaseIndex, setPhaseIndex] = useState(0);
-    const [breakPhase, setBreakPhase] = useState(false);
-        
-        for (let i = 0; i < phaseArray; i++) {
-
-            const { type, procedure, } = phaseArray[i]
-            let breakCheck = false;
-            if (!breakPhase) {
-                if (phaseIndex > i) {
-                    continue;
-                } else {
-                    switch (type) {
-                        case 'playerAction':
-                            procedure();
-                            breakCheck = true;
-                        break;
-                        
-                        case 'auto':
-                            procedure();
-                        break;
-                    
-                        default:
-                            console.log('useRunPhase - error', phaseArray, phaseArray[i], type, procedure, phaseIndex, breakPhase);
-                        break;
-                    };
-                };
-            } else {
-                break;
-            }
-                setPhaseIndex(i);
-                setBreakPhase(breakCheck);
-        };
-    };
-
 /* EXPORTS */
 export {
     standardDeck,
@@ -202,5 +163,4 @@ export {
     renderHand,
     rankHand,
     run,
-    useRunPhase,
 }

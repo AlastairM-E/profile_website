@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /dist
+/src/JPEG
 /.pnp
 .pnp.js
 

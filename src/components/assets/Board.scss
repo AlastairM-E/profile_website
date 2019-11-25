@@ -5,8 +5,8 @@
     height: 100%;
     display : grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(13, 1fr);
 }
 
 .flexbox {
@@ -14,34 +14,40 @@
 }
 
 .board {
-    grid-column: 2/12;
-    grid-row: 2/12;
+    grid-column: 2/13;
+    grid-row: 2/13;
     background: $dark-green;
 
     * {
         border: $border;
     }
 
+    .board--title {
+        grid-row: 1/2;
+        text-decoration: underline;
+        grid-column: span 13;
+    }
+
     .deck {
         grid-column: 2/3;
-        grid-row: 9/12;
+        grid-row: 9/13;
         background: $brown;
     }
 
     .player {
         background:white;
-        grid-column : 3/12;
-        grid-row : 9/12;
+        grid-column : 3/13;
+        grid-row : 9/13;
         padding: 5px;
     }
 
     .opponents {
         background:white;
-        grid-column : 2/12;
+        grid-column : 2/13;
         grid-row: 2/4;
     }
-    .Pile {
-        grid-column: 2/12;
+    .pile {
+        grid-column: 2/13;
         grid-row: 4/9;
         background:$light-green;
     }

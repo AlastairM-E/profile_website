@@ -15,7 +15,6 @@ import {
     rankHand,
     drawFromDeck,
     run,
-    useRunPhase, 
 } from '../casino';
 
 
@@ -52,30 +51,81 @@ export default function Board() {
     ]);
     const [currentPlayer, setCurrentPlayer] = turn[0];
   
-    /* HELPER FUNCTIONS */
-    function runAdv() {
-        opponent.hasLost === false && player.hasLost === false ? useRunPhase([
-            { type : 'playerAction', procedure : drawFromDeck(deck, setDeck, currentPlayer, 1, setCurrentPlayer,), },
-            { type : 'auto', procedure :  setCurrentPlayer(rankHand(currentPlayer, 'hand', 'handValue', 'hasLost')), },
-            { type : 'auto', procedure : setTurn(rotateTurn(turn)), },
-        ]) : null;
+    // keep track of what phrase it is.
+    const [phaseIndex, setPhaseIndex] = useState(0);
+
+    function runPhase(phaseArray){
+
+
+        if (phaseArray === 'finished') {
+            console.log('hello');
+            return null;
+        };
+
+        let breakCheck = false;
+        let indexCheck = phaseIndex === 0 ? -1 : phaseIndex;
+        
+            
+        //For loop going through all the phases;
+        // then it will check if the current phase is necessary, will then skip the rest till it is.
+        //the will folow procedure if necessary.
+        for (let i = 0; i < phaseArray.length; i++) {
+
+            console.log('useRunPhase', 'start', breakCheck, indexCheck);
+            
+            const { type, procedure, } = phaseArray[i];
+            
+            if (indexCheck < i) {
+                indexCheck = i;
+                if (breakCheck) {
+                    break;
+                } else {
+                    switch (type) {
+                        case 'playerAction':
+                            console.log('p & o start', player, opponent);
+                            procedure();
+                            console.log('p & o end', player, opponent);
+                            breakCheck = true;
+                        break;
+                        
+                        case 'auto':
+                            procedure();
+                        break;
+                    
+                        default:
+                            console('useRunPhase - error', breakCheck, indexCheck);
+                        break;
+                    };
+                }
+                
+            } else {
+                continue;
+            };
+
+            console.log('useRunPhase', 'end', breakCheck, indexCheck);
+        };
+
+        
+
+        setPhaseIndex(indexCheck);
     };
 
     /* RENDER */
     return (
         <div className="board grid">
+            <h1 className="board--title">Blackjack game</h1>
             <button onClick={() => {
-                /*opponent.hasLost === false && player.hasLost === false ? run([
-                    drawFromDeck(deck, setDeck, currentPlayer, 1, setCurrentPlayer,),
-                    setCurrentPlayer(rankHand(currentPlayer, 'hand', 'handValue', 'hasLost')),
-                    setTurn(rotateTurn(turn)),
-                ]) : null;*/
-                runAdv();
-            }}> run a turn</button>
+                    runPhase(opponent.hasLost === false && player.hasLost === false ? [
+                        { type : 'playerAction', procedure : () => drawFromDeck(deck, setDeck, currentPlayer, 1, setCurrentPlayer,), },
+                        { type : 'auto', procedure :  () => setCurrentPlayer(rankHand(currentPlayer, 'hand', 'handValue', 'hasLost')), },
+                        { type : 'auto', procedure : () => setTurn(rotateTurn(turn)), },
+                    ] : 'finished');
+                }
+            }> run a turn</button>
             <Opponents opponent={opponent} />
             <Pile pile={pile} />
             <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
-            <Player player={player} />
+            <Player player={player} opponentHasLost={opponent.hasLost} />
         </div>
     ); 
 

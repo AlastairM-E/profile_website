@@ -37,10 +37,9 @@ export default function Navbar() {
             <Toolbar>
                 <Typography  varient='h6' className={classes.Title}>Alastair M-E</Typography>
                     <NavLink to='/' className={classes.navLink}>Home</NavLink>
+                    <NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink> 
                     <Link href='#About' className={classes.navLink}>About</Link>
                     <Link href='#Contact' className={classes.navLink}>Contact</Link>
-                    <Link href='https://medium.com/@alastair.me.blog' className={classes.navLink}>Blog</Link>
-                    <NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink>        
             </Toolbar>
         </AppBar>
     );

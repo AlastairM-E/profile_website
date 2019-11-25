@@ -5,6 +5,8 @@ import { Paper, Typography, Grid, Fab, Link, } from '@material-ui/core';
 import { grey, lightBlue, } from '@material-ui/core/colors';
 import { makeStyles, } from '@material-ui/core/styles';
 
+import { NavLink, } from 'react-router-dom';
+
 /* STYLES */
 const useStyles = makeStyles(theme => ({
     Fab : {
@@ -95,7 +97,7 @@ export default function SlideShow() {
                 <Typography className={classes.SlideContent}>
                     Here are some of my projects.
                     <br />
-                    <Link href='/Portfolio'>learn more</Link>
+                    <NavLink to='/Portfolio'>learn more</NavLink>
                 </Typography>, 
         },
     ];
