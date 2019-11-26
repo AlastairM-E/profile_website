@@ -52,10 +52,11 @@ export default function Board() {
     const [currentPlayer, setCurrentPlayer] = turn[0];
   
     // keep track of what phrase it is.
+    const [breakIndex, setBreakIndex] = useState(false);
     const [phaseIndex, setPhaseIndex] = useState(0);
 
     function runPhase(phaseArray){
-
+        console.log('phaseIndex -', phaseIndex);
 
         if (phaseArray === 'finished') {
             console.log('hello');
@@ -105,9 +106,9 @@ export default function Board() {
             console.log('useRunPhase', 'end', breakCheck, indexCheck);
         };
 
-        
+        console.log('useRunPhase', 'end', breakCheck, indexCheck);
 
-        setPhaseIndex(indexCheck);
+        setPhaseIndex(indexCheck === phaseArray.length -1 ? 0 : indexCheck);
     };
 
     /* RENDER */
