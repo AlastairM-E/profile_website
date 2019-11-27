@@ -16,6 +16,7 @@ import {
     drawFromDeck,
     run,
 } from '../casino';
+import { resetWarningCache } from 'prop-types';
 
 
 
@@ -51,41 +52,47 @@ export default function Board() {
     ]);
     const [currentPlayer, setCurrentPlayer] = turn[0];
   
-    // keep track of what phrase it is.
-    const [breakIndex, setBreakIndex] = useState(false);
-    const [phaseIndex, setPhaseIndex] = useState(0);
+    // keep track of what phraseIndex should stop it is.
+    const [phaseIndex, setPhaseIndex] = useState(-2);
 
     function runPhase(phaseArray){
-        console.log('phaseIndex -', phaseIndex);
-
+        //if the phasearray is finished, e.g. one the player has lost, disable the button
         if (phaseArray === 'finished') {
-            console.log('hello');
             return null;
         };
 
-        let breakCheck = false;
-        let indexCheck = phaseIndex === 0 ? -1 : phaseIndex;
-        
-            
-        //For loop going through all the phases;
-        // then it will check if the current phase is necessary, will then skip the rest till it is.
-        //the will folow procedure if necessary.
-        for (let i = 0; i < phaseArray.length; i++) {
+        console.log(phaseIndex);
 
-            console.log('useRunPhase', 'start', breakCheck, indexCheck);
+        //Checks what phase is needed to break next.
+        //States what index should be skipped on the next follow through of the phases.
+        //the index check should be -1 at the start, or the phaseIndex, if th ephase index has changed value.
+        let breakCheck = false;
+        let indexCheck = phaseIndex === -2 ? -2 : phaseIndex;
+        
+        //For loop going through all the phases;
+        // spilt the type (whether their needs to be a pause or not) 
+        //and procedure (the actually function that execute the logic in the phases) 
+        //of the current phases
+        for (let i = 0; i < phaseArray.length; i++) {
             
             const { type, procedure, } = phaseArray[i];
             
-            if (indexCheck < i) {
+            //check if the indexCheck is greater than current phase 
+            //(therefore should be skipped as this phase has already been done in the past)
+            if (indexCheck <= i) {
+                //set the index check to be i, so that if the next phase were to cancel the phases, 
+                //it will store that this phase should block it.
                 indexCheck = i;
+                //if break check is true , break the loop and then recharge the entire thing.
                 if (breakCheck) {
                     break;
                 } else {
+                    //swtich statement based on the the type of phase.
+                    //if player action run the procedure and then make breakCheck false, so the next phase interation will not run.
+                    //else jsut auto run the procedure.
                     switch (type) {
                         case 'playerAction':
-                            console.log('p & o start', player, opponent);
                             procedure();
-                            console.log('p & o end', player, opponent);
                             breakCheck = true;
                         break;
                         
@@ -97,32 +104,70 @@ export default function Board() {
                             console('useRunPhase - error', breakCheck, indexCheck);
                         break;
                     };
+                    
                 }
-                
+            // skip the pahse if it has already in done in the previous turn, this is only to clear up all pahses that weer preivous blocked off.
             } else {
                 continue;
             };
 
-            console.log('useRunPhase', 'end', breakCheck, indexCheck);
         };
-
-        console.log('useRunPhase', 'end', breakCheck, indexCheck);
-
-        setPhaseIndex(indexCheck === phaseArray.length -1 ? 0 : indexCheck);
+        //set the pahse array to be the reset (if it the last index nnumebr of the phaseArray, 
+        //or set as indexCheck to skip all turns that have already been done.)
+        setPhaseIndex(indexCheck === phaseArray.length -1 ? -2 : indexCheck);
     };
 
+    function Turn(drawPhaseType, numberOfCardsToDraw, toRotate) {
+        runPhase(opponent.hasLost === false && player.hasLost === false ? [
+            { 
+                type : drawPhaseType, 
+                procedure : () => 
+                    drawFromDeck(
+                        deck, 
+                        setDeck, 
+                        currentPlayer, 
+                        numberOfCardsToDraw, 
+                        setCurrentPlayer,
+                    ), 
+            },
+            { 
+                type : 'auto',
+                 procedure :  () => 
+                    setCurrentPlayer(
+                        rankHand(
+                            currentPlayer, 
+                            'hand', 
+                            'handValue', 
+                            'hasLost'
+                        )
+                    ), 
+            },
+            { 
+                type : 'auto', 
+                procedure : () => toRotate ?
+                    setTurn(
+                        rotateTurn(turn)
+                    ) : null,
+            },
+        ] : 'finished');
+    };
+
+    function SetUp() {
+
+    };
+    function Reset() {
+
+    };
+   
     /* RENDER */
     return (
         <div className="board grid">
             <h1 className="board--title">Blackjack game</h1>
-            <button onClick={() => {
-                    runPhase(opponent.hasLost === false && player.hasLost === false ? [
-                        { type : 'playerAction', procedure : () => drawFromDeck(deck, setDeck, currentPlayer, 1, setCurrentPlayer,), },
-                        { type : 'auto', procedure :  () => setCurrentPlayer(rankHand(currentPlayer, 'hand', 'handValue', 'hasLost')), },
-                        { type : 'auto', procedure : () => setTurn(rotateTurn(turn)), },
-                    ] : 'finished');
-                }
-            }> run a turn</button>
+            <button onClick={() => Turn('playerAction', 1, true)}>Start turn</button>
+            <button onClick={() => Reset()}>Reset</button>
+            <button onClick={() => Turn('playerAction', 1, false)}>Stick</button> 
+                or 
+            <button onClick={() => Turn('playerAction', 0, false)}>Remove</button>
             <Opponents opponent={opponent} />
             <Pile pile={pile} />
             <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
