@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, } from 'react';
 
 /* Deck - an array, whcih contains objects, adn each of those objects are cards. */
 const standardDeck = {
@@ -102,16 +102,30 @@ const standardDeck = {
         setHand(toDraw);
     };
 
-    function renderHand(hand, cardFace,) {
-        return hand.map(({ rank, cardSuit, },) => {
-            return (
-                <div 
-                    className={"card " + cardFace} 
-                    key={rank + cardSuit} 
-                >
-                    {rank} | {cardSuit} 
-                </div>
-            ); 
+    
+
+    const [urls, setUrls] = useState([]);
+
+    function useRenderHand(hand, cardFace,) {
+        
+        useEffect(() => {
+            setUrls(
+                hand.reduce(async (accum, { rank, cardSuit, royality },) => {
+                    let cardImgUrl = 'JPEG/' + (royality ? royality : rank) + cardSuit;
+                    let importUrl = await import('./' + cardImgUrl + '.jpg').then((res) => {
+                        return res.default;
+                    }).catch(error => error);
+                    await accum.push(importUrl);
+                }, [])
+            );
+        }, []);
+        
+        return hand.map(({ rank, cardSuit, }, index) => {
+            return <img 
+                className={"card " + cardFace} 
+                key={rank + cardSuit}
+                src={urls[index]} 
+            />
         });
     };
 
@@ -137,7 +151,7 @@ export {
     shuffle,
     draw,
     drawFromDeck,
-    renderHand,
+    useRenderHand,
     rankHand,
     run,
 }

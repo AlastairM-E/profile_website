@@ -1,12 +1,14 @@
 /*IMPORTS*/
 import React from 'react'; 
 
+import url from '../../JPEG/Red_back.jpg';
+
 /*COMPONENT*/
 export default function Deck({ drawFromDeck, }) {
-    
+    // click event listener : onClick={drawFromDeck}
     /* RENDER */
     return (
-        <div className="deck" onClick={drawFromDeck}>Deck</div>
+        <img className="deck" src={url} />
     ); 
 
 };

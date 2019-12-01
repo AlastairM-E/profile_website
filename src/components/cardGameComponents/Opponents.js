@@ -1,7 +1,7 @@
 /*IMPORTS*/
 import React from 'react'; 
 
-import { renderHand, } from '../../casino';
+import { useRenderHand, } from '../../casino';
 
 /*COMPONENT*/
 export default function Opponents({ opponent, isOpponentTurn }) {
@@ -10,7 +10,7 @@ export default function Opponents({ opponent, isOpponentTurn }) {
     return (
         <div className="opponents flexbox">
             Opponent Hand
-            {isOpponentTurn ? renderHand(opponent.hand, 'front',) : renderHand(opponent.hand, 'back',)}
+            {isOpponentTurn ? useRenderHand(opponent.hand, 'front',) : useRenderHand(opponent.hand, 'back',)}
         </div>
     ); 
 

@@ -1,8 +1,7 @@
 /*IMPORTS*/
-import React, { useState, useEffect, } from 'react';
+import React, { useState, } from 'react';
 
 import { 
-    Deck, 
     Player, 
     Opponents,
     Pile, 
@@ -13,7 +12,6 @@ import {
     standardDeck,
     rankHand,
     drawFromDeck,
-    run,
 } from '../casino';
 
 
@@ -178,20 +176,34 @@ export default function Board() {
         <div className="board grid">
             
             <h1 className="board--title">Blackjack game</h1>
-            <p>Note : aces are low</p>
-            <button onClick={StartGame}>Start Game</button>
-            <button onClick={() => Turn('auto', 'auto', 1, 0)}>Twist</button>
-            <button onClick={() => {
-                Turn('auto', 'auto', 0, 0);
-                OpponentTurn();
-            }}>Stick</button>
-            <button onClick={OpponentTurn}>End Turn</button>
-            <button onClick={Reset}>Reset</button>
+            <span className="board--title">Note : aces are low</span>
+            <div className="board--DisplayOptions">
+                
+                <button onClick={StartGame}>Start Game</button>
+                <button onClick={() => Turn('auto', 'auto', 1, 0)}>Twist</button>
+                <button onClick={() => {
+                    Turn('auto', 'auto', 0, 0);
+                    OpponentTurn();
+                }}>Stick</button>
+                <button onClick={OpponentTurn}>End Turn</button>
+                <button onClick={Reset}>Reset</button>
+
+                {isOpponentTurn ? <div className="checkStats"> Opponent Hand Value : {opponent.handValue} </div> : null}
+
+                <p>your current total card value : {player.handValue}</p>
+
+                {player.hasLost === true || (opponent.handValue > player.handValue && !opponent.hasLost && isOpponentTurn) ? 
+                    <p>You have lost'</p> 
+                : null}
+                {opponent.hasLost === true || (opponent.handValue < player.handValue && !player.hasLost && isOpponentTurn) ?
+                    <p> You have won</p> 
+                : null}
+                    
+            </div>
             <Opponents opponent={opponent} isOpponentTurn={isOpponentTurn} />
             <Pile pile={pile} />
-            <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
-            <Player player={player} opponent={opponent} isOpponentTurn={isOpponentTurn} />
-             {isOpponentTurn ? <div className="checkStats"> Opponent Hand Value : {opponent.handValue} </div> : null}
+            <Player player={player} />
+             
         </div>
     ); 
 

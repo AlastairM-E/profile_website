@@ -5,74 +5,87 @@
     height: 100%;
     display : grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(13, 1fr);
-    grid-template-rows: repeat(13, 1fr);
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
 }
 
 .flexbox {
     display: flex;
 }
 
+
+
 .board {
-    grid-column: 2/13;
-    grid-row: 2/13;
+
+    grid-column: 3/11;
+    grid-row: 3/11;
+    padding : 5px;
     background: $dark-green;
 
     * {
         border: $border;
+        grid-column: span 12;
     }
 
     .board--title {
-        grid-row: 1/2;
-        text-decoration: underline;
-        grid-column: span 13;
+        grid-row: span 1;
+        margin : 5px;
+        grid-column: span 12;
+        color : red;
     }
 
-    .deck {
-        grid-column: 2/3;
-        grid-row: 9/13;
-        background: $brown;
-    }
+    .board--DisplayOptions {
 
-    .player {
+        grid-row: span 1;
         background:white;
-        grid-column : 3/13;
-        grid-row : 9/13;
-        padding: 5px;
+        
+        padding : 5px;
+        display : flex;
+
+        justify-content: space-around;
+
+        * {
+           padding : none;
+           border : none;
+           align-self: center;
+        } 
+
+        button {
+            border : $border;
+            height : 45px;
+            width : 100px;
+        }
     }
 
     .opponents {
-        background:white;
-        grid-column : 2/13;
-        grid-row: 2/4;
+        grid-row: span 2;
+        background:white; 
     }
+
     .pile {
-        grid-column: 2/13;
-        grid-row: 4/9;
+        grid-row: span 4;
         background:$light-green;
+
+        .deck {
+            object-fit: cover;
+        }
+    }
+
+    .player {
+        grid-row: span 2;
+        background:white;
+        padding: 5px;
     }
 
     .card {
         border : $border;
         padding: 2.5px;
         margin:5px 10px;
+        .back {
+            background : url('../../JPEG/Red_back.jpg');
+        } 
     }
 
-    .back {
-        background: $brown;
-        color : $brown;
-    }
-
-    .score {
-        background:white;
-        * {
-            border:none;
-            margin:5px;
-        }
-    }
-    .checkStats {
-        background : white;
-    }
     
 }
 
