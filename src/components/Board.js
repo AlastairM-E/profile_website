@@ -13,6 +13,7 @@ import {
     standardDeck,
     rankHand,
     drawFromDeck,
+    run,
 } from '../casino';
 
 
@@ -35,7 +36,6 @@ export default function Board() {
   
     // keep track of what phraseIndex should stop it is.
     const [phaseIndex, setPhaseIndex] = useState(-1);
-    const [breakCheck, setBreakCheck] = useState(false);
 
     function runPhase(phaseArray){
         //if the phasearray is finished, e.g. one the player has lost, disable the button
@@ -59,33 +59,16 @@ export default function Board() {
 
             //check if the indexCheck is greater than current phase 
             //(therefore should be skipped as this phase has already been done in the past)
-            if (phaseIndex <= i) {
+            if (phaseIndex < i) {
                 //set the index check to be i, so that if the next phase were to cancel the phases, 
                 //it will store that this phase should block it.
-                setPhaseIndex(i);
                 //if break check is true , break the loop and then recharge the entire thing.
-                if (breakCheck) {
-                    break;
-                } else {
-                    //swtich statement based on the the type of phase.
-                    //if player action run the procedure and then make breakCheck false, so the next phase interation will not run.
-                    //else jsut auto run the procedure.
-                    switch (type) {
-                        case 'playerAction':
-                            procedure();
-                            setBreakCheck(true);
-                        break;
-                        
-                        case 'auto':
-                            procedure();
-                        break;
-                    
-                        default:
-                            console.log('useRunPhase - error', breakCheck, phaseIndex);
+                    procedure();
+                    setPhaseIndex(i);
+                    if (type === 'playerAction') {
                         break;
                     };
                     
-                }
             // skip the pahse if it has already in done in the previous turn, this is only to clear up all pahses that weer preivous blocked off.
             } else {
                 continue;
@@ -94,14 +77,12 @@ export default function Board() {
         };
         //set the pahse array to be the reset (if it the last index nnumebr of the phaseArray, 
         //or set as indexCheck to skip all turns that have already been done.)
-        setBreakCheck(false);
+        console.log(phaseIndex, phaseArray.length);
         setPhaseIndex(phaseIndex => phaseIndex === phaseArray.length -1 ? -1 : phaseIndex);
     };
 
-    useEffect(() => console.log(breakCheck), [breakCheck]);
-
     function Turn(playerDrawPhaseType, opponentDrawPhaseType, playerDraw, opponentDraw,) {
-        runPhase(opponent.hasLost === false && player.hasLost === false ? [
+      runPhase(opponent.hasLost === false && player.hasLost === false ? [
             { type : 'auto', procedure : () => console.log('player', player, opponent), },
             { 
                 type : playerDrawPhaseType, 
@@ -155,19 +136,20 @@ export default function Board() {
     };
     
     function Reset() {
-        const newAgent = {
+        setDeck(({ library, cardsTakenFromLibrary, }) => ({
+            cardsTakenFromLibrary : [],
+            library : [...library, ...cardsTakenFromLibrary],
+        }));
+        setPlayer({
             hand : [],
             handValue : 0,
             hasLost : false,
-        };
-
-        setDeck(({ library, cardsTakenFromLibrary, }) => ({
-            library : [...library, ...cardsTakenFromLibrary],
-            cardsTakenFromLibrary : [],
-        }));
-        setPlayer(newAgent);
-        setOpponent(newAgent);
-        setBreakCheck(false);
+        });
+        setOpponent({
+            hand : [],
+            handValue : 0,
+            hasLost : false,
+        });
         setPhaseIndex(-1);
     };
 
@@ -185,28 +167,13 @@ export default function Board() {
             
             <h1 className="board--title">Blackjack game</h1>
             <button onClick={StartGame}>Start Game</button>
-            <button onClick={() => Turn('playerAction', 'playerAction', 1, 1)}>Twist</button>
-            <button onClick={() => {
-                Reset();
-                console.log('reset', deck, player, opponent);
-            }}>Reset</button>
+            <button onClick={() => Turn('playerAction', 'auto', 1, 1)}>Twist</button>
+            <button onClick={Reset}>Reset</button>
+            
             <Opponents opponent={opponent} />
             <Pile pile={pile} />
             <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
             <Player player={player} opponentHasLost={opponent.hasLost} />
-
-            <div className='checkStats'>
-                Library length : {deck.library.length}
-                <br/>
-                cardsTakenFromLibrary length : {deck.cardsTakenFromLibrary.length}
-                <br/>
-                playerHand length : {player.hand.length}
-                <br/>
-                opponentHand length : {opponent.hand.length}
-                <br/>
-                opponent value : {opponent.handValue}
-            </div>
-
         </div>
     ); 
 

@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React from 'react';
 
 /* Deck - an array, whcih contains objects, adn each of those objects are cards. */
 const standardDeck = {
@@ -87,7 +87,7 @@ const standardDeck = {
 
         for (let index = 0; index < numberOfCardsToDraw; index++) {
             const removeTopCard = library.shift();
-         
+            console.log('casino js - draw top', removeTopCard);
             agent.hand.push(removeTopCard);
             cardsTakenFromLibrary.push(removeTopCard);
             
@@ -107,10 +107,16 @@ const standardDeck = {
     };
 
     function rankHand(thisAgent, hand, handValue, hasLost) {
-        const rankOfHand = thisAgent[hand].reduce((sumOfRank, card) => sumOfRank + card.rank,0);
+        const rankOfHand = thisAgent[hand].reduce((sumOfRank, card) => sumOfRank + card.rank, 0);
         thisAgent[handValue] = rankOfHand;
         thisAgent[hasLost] = rankOfHand > 21 ?  true : false;
         return thisAgent;
+    };
+
+    function run(phaseArray) {
+        phaseArray.forEach(({ procedure, }) => {
+            procedure();
+        });
     };
 
 /* EXPORTS */
@@ -121,4 +127,5 @@ export {
     drawFromDeck,
     renderHand,
     rankHand,
+    run,
 }
