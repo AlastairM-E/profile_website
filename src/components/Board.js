@@ -163,7 +163,7 @@ export default function Board() {
         }
     };
 
-    function ComputerTurn() {
+    function OpponentTurn() {
         for (let index = 0; index < opponent.hand.length; index++) {
             Turn('auto', 'auto', 0, 1);
             if (opponent.HasLost || opponent.handValue === 21) {
@@ -178,16 +178,20 @@ export default function Board() {
         <div className="board grid">
             
             <h1 className="board--title">Blackjack game</h1>
+            <p>Note : aces are low</p>
             <button onClick={StartGame}>Start Game</button>
             <button onClick={() => Turn('auto', 'auto', 1, 0)}>Twist</button>
-            <button onClick={() => Turn('auto', 'auto', 0, 0)}>Stick</button>
-            <button onClick={ComputerTurn}>End Turn</button>
+            <button onClick={() => {
+                Turn('auto', 'auto', 0, 0);
+                OpponentTurn();
+            }}>Stick</button>
+            <button onClick={OpponentTurn}>End Turn</button>
             <button onClick={Reset}>Reset</button>
-            <Opponents opponent={opponent} />
+            <Opponents opponent={opponent} isOpponentTurn={isOpponentTurn} />
             <Pile pile={pile} />
             <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
             <Player player={player} opponent={opponent} isOpponentTurn={isOpponentTurn} />
-            <div className="checkStats"></div>
+             {isOpponentTurn ? <div className="checkStats"> Opponent Hand Value : {opponent.handValue} </div> : null}
         </div>
     ); 
 

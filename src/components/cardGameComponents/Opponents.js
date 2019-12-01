@@ -4,13 +4,13 @@ import React from 'react';
 import { renderHand, } from '../../casino';
 
 /*COMPONENT*/
-export default function Opponents({ opponent, }) {
+export default function Opponents({ opponent, isOpponentTurn }) {
 
     /* RENDER */
     return (
         <div className="opponents flexbox">
             Opponent Hand
-            {renderHand(opponent.hand, 'back',)}
+            {isOpponentTurn ? renderHand(opponent.hand, 'front',) : renderHand(opponent.hand, 'back',)}
         </div>
     ); 
 

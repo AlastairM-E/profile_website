@@ -4,65 +4,65 @@ import React from 'react';
 const standardDeck = {
     cardsTakenFromLibrary : [],
     library : shuffle([
-        {"rank" : 1, "cardSuit" : "hearts"},
-        {"rank" : 2, "cardSuit" : "hearts"},
-        {"rank" : 3, "cardSuit" : "hearts"},
-        {"rank" : 4, "cardSuit" : "hearts"},
-        {"rank" : 5, "cardSuit" : "hearts"},
-        {"rank" : 6, "cardSuit" : "hearts"},
-        {"rank" : 7, "cardSuit" : "hearts"},
-        {"rank" : 8, "cardSuit" : "hearts"},
-        {"rank" : 9, "cardSuit" : "hearts"},
-        {"rank" : 10, "cardSuit" : "hearts"},
-        {"rank" : 11, "cardSuit" : "hearts"},
-        {"rank" : 12, "cardSuit" : "hearts"},
-        {"rank" : 13, "cardSuit" : "hearts"},
-        {"rank" : 14, "cardSuit" : "hearts"},
+        {"rank" : 1, "cardSuit" : "H"},
+        {"rank" : 2, "cardSuit" : "H"},
+        {"rank" : 3, "cardSuit" : "H"},
+        {"rank" : 4, "cardSuit" : "H"},
+        {"rank" : 5, "cardSuit" : "H"},
+        {"rank" : 6, "cardSuit" : "H"},
+        {"rank" : 7, "cardSuit" : "H"},
+        {"rank" : 8, "cardSuit" : "H"},
+        {"rank" : 9, "cardSuit" : "H"},
+        {"rank" : 10, "cardSuit" : "H"},
+        {"rank" : 10, "royality" : "J", "cardSuit" : "H"},
+        {"rank" : 10, "royality" : "Q", "cardSuit" : "H"},
+        {"rank" : 10, "royality" : "K", "cardSuit" : "H"},
+        {"rank" : [11, 1], "royality" : "A", "cardSuit" : "H"},
 
-        {"rank" : 1, "cardSuit" : "diamonds"},
-        {"rank" : 2, "cardSuit" : "diamonds"},
-        {"rank" : 3, "cardSuit" : "diamonds"},
-        {"rank" : 4, "cardSuit" : "diamonds"},
-        {"rank" : 5, "cardSuit" : "diamonds"},
-        {"rank" : 6, "cardSuit" : "diamonds"},
-        {"rank" : 7, "cardSuit" : "diamonds"},
-        {"rank" : 8, "cardSuit" : "diamonds"},
-        {"rank" : 9, "cardSuit" : "diamonds"},
-        {"rank" : 10, "cardSuit" : "diamonds"},
-        {"rank" : 11, "cardSuit" : "diamonds"},
-        {"rank" : 12, "cardSuit" : "diamonds"},
-        {"rank" : 13, "cardSuit" : "diamonds"},
-        {"rank" : 14, "cardSuit" : "diamonds"},
+        {"rank" : 1, "cardSuit" : "D"},
+        {"rank" : 2, "cardSuit" : "D"},
+        {"rank" : 3, "cardSuit" : "D"},
+        {"rank" : 4, "cardSuit" : "D"},
+        {"rank" : 5, "cardSuit" : "D"},
+        {"rank" : 6, "cardSuit" : "D"},
+        {"rank" : 7, "cardSuit" : "D"},
+        {"rank" : 8, "cardSuit" : "D"},
+        {"rank" : 9, "cardSuit" : "D"},
+        {"rank" : 10, "cardSuit" : "D"},
+        {"rank" : 10, "royality" : "J", "cardSuit" : "D"},
+        {"rank" : 10, "royality" : "Q", "cardSuit" : "D"},
+        {"rank" : 10, "royality" : "K", "cardSuit" : "D"},
+        {"rank" : [11, 1], "royality" : "A", "cardSuit" : "D"},
 
-        {"rank" : 1, "cardSuit" : "clubs"},
-        {"rank" : 2, "cardSuit" : "clubs"},
-        {"rank" : 3, "cardSuit" : "clubs"},
-        {"rank" : 4, "cardSuit" : "clubs"},
-        {"rank" : 5, "cardSuit" : "clubs"},
-        {"rank" : 6, "cardSuit" : "clubs"},
-        {"rank" : 7, "cardSuit" : "clubs"},
-        {"rank" : 8, "cardSuit" : "clubs"},
-        {"rank" : 9, "cardSuit" : "clubs"},
-        {"rank" : 10, "cardSuit" : "clubs"},
-        {"rank" : 11, "cardSuit" : "clubs"},
-        {"rank" : 12, "cardSuit" : "clubs"},
-        {"rank" : 13, "cardSuit" : "clubs"},
-        {"rank" : 14, "cardSuit" : "clubs"},
+        {"rank" : 1, "cardSuit" : "C"},
+        {"rank" : 2, "cardSuit" : "C"},
+        {"rank" : 3, "cardSuit" : "C"},
+        {"rank" : 4, "cardSuit" : "C"},
+        {"rank" : 5, "cardSuit" : "C"},
+        {"rank" : 6, "cardSuit" : "C"},
+        {"rank" : 7, "cardSuit" : "C"},
+        {"rank" : 8, "cardSuit" : "C"},
+        {"rank" : 9, "cardSuit" : "C"},
+        {"rank" : 10, "cardSuit" : "C"},
+        {"rank" : 10, "royality" : "J", "cardSuit" : "C"},
+        {"rank" : 10, "royality" : "Q", "cardSuit" : "C"},
+        {"rank" : 10, "royality" : "K", "cardSuit" : "C"},
+        {"rank" : [11, 1], "royality" : "A", "cardSuit" : "C"},
 
-        {"rank" : 1, "cardSuit" : "spades"},
-        {"rank" : 2, "cardSuit" : "spades"},
-        {"rank" : 3, "cardSuit" : "spades"},
-        {"rank" : 4, "cardSuit" : "spades"},
-        {"rank" : 5, "cardSuit" : "spades"},
-        {"rank" : 6, "cardSuit" : "spades"},
-        {"rank" : 7, "cardSuit" : "spades"},
-        {"rank" : 8, "cardSuit" : "spades"},
-        {"rank" : 9, "cardSuit" : "spades"},
-        {"rank" : 10, "cardSuit" : "spades"},
-        {"rank" : 11, "cardSuit" : "spades"},
-        {"rank" : 12, "cardSuit" : "spades"},
-        {"rank" : 13, "cardSuit" : "spades"},
-        {"rank" : 14, "cardSuit" : "spades"},
+        {"rank" : 1, "cardSuit" : "S"},
+        {"rank" : 2, "cardSuit" : "S"},
+        {"rank" : 3, "cardSuit" : "S"},
+        {"rank" : 4, "cardSuit" : "S"},
+        {"rank" : 5, "cardSuit" : "S"},
+        {"rank" : 6, "cardSuit" : "S"},
+        {"rank" : 7, "cardSuit" : "S"},
+        {"rank" : 8, "cardSuit" : "S"},
+        {"rank" : 9, "cardSuit" : "S"},
+        {"rank" : 10, "cardSuit" : "S"},
+        {"rank" : 10, "royality" : "J", "cardSuit" : "S"},
+        {"rank" : 10, "royality" : "Q", "cardSuit" : "S"},
+        {"rank" : 10, "royality" : "K", "cardSuit" : "S"},
+        {"rank" : [11, 1], "royality" : "A", "cardSuit" : "S"},
     ]),
 };
 
@@ -102,13 +102,23 @@ const standardDeck = {
         setHand(toDraw);
     };
 
-    function renderHand(hand, cardFace ) {
-        return hand.map(({ rank, cardSuit}) => <div className={"card " + cardFace} key={rank + cardSuit}>{rank} | {cardSuit} </div>);
+    function renderHand(hand, cardFace,) {
+        return hand.map(({ rank, cardSuit, },) => {
+            return (
+                <div 
+                    className={"card " + cardFace} 
+                    key={rank + cardSuit} 
+                >
+                    {rank} | {cardSuit} 
+                </div>
+            ); 
+        });
     };
 
-    function rankHand(thisAgent, hand, handValue, hasLost) {
+    function rankHand(thisAgent, hand, handValue, hasLost, ) {
         const rankOfHand = thisAgent[hand].reduce((sumOfRank, card) => {
-            sumOfRank + card.rank
+            let cardRank = Array.isArray(card.rank) ? card.rank[1] : card.rank;
+            return sumOfRank + cardRank;
         }, 0);
         thisAgent[handValue] = rankOfHand;
         thisAgent[hasLost] = rankOfHand > 21 ?  true : false;
