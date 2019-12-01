@@ -33,6 +33,7 @@ export default function Board() {
         hasLost : false,
     });
     const [pile, setPile] = useState([]);
+    const [isOpponentTurn, setIsOpponentTurn] = useState(false);
   
     // keep track of what phraseIndex should stop it is.
     const [phaseIndex, setPhaseIndex] = useState(-1);
@@ -151,6 +152,7 @@ export default function Board() {
             hasLost : false,
         });
         setPhaseIndex(-1);
+        setIsOpponentTurn(false);  
     };
 
     function StartGame() {
@@ -160,6 +162,16 @@ export default function Board() {
             return null;
         }
     };
+
+    function ComputerTurn() {
+        for (let index = 0; index < opponent.hand.length; index++) {
+            Turn('auto', 'auto', 0, 1);
+            if (opponent.HasLost || opponent.handValue === 21) {
+                break;
+            };
+        };  
+        setIsOpponentTurn(true);     
+    };
    
     /* RENDER */
     return (
@@ -167,13 +179,15 @@ export default function Board() {
             
             <h1 className="board--title">Blackjack game</h1>
             <button onClick={StartGame}>Start Game</button>
-            <button onClick={() => Turn('playerAction', 'auto', 1, 1)}>Twist</button>
+            <button onClick={() => Turn('auto', 'auto', 1, 0)}>Twist</button>
+            <button onClick={() => Turn('auto', 'auto', 0, 0)}>Stick</button>
+            <button onClick={ComputerTurn}>End Turn</button>
             <button onClick={Reset}>Reset</button>
-            
             <Opponents opponent={opponent} />
             <Pile pile={pile} />
             <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
-            <Player player={player} opponentHasLost={opponent.hasLost} />
+            <Player player={player} opponent={opponent} isOpponentTurn={isOpponentTurn} />
+            <div className="checkStats"></div>
         </div>
     ); 
 
