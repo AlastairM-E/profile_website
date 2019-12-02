@@ -3,7 +3,7 @@ import React from 'react';
 
 import { NavLink, } from 'react-router-dom';
 
-import { AppBar, Toolbar, Typography, Link, } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, } from '@material-ui/core';
 import { makeStyles, } from '@material-ui/core/styles';
 import { lightBlue, } from '@material-ui/core/colors';
 
@@ -36,10 +36,10 @@ export default function Navbar() {
         <AppBar className={classes.AppBar} position='static'>
             <Toolbar>
                 <Typography  varient='h6' className={classes.Title}>Alastair M-E</Typography>
-                    <NavLink to='/' className={classes.navLink}>Home</NavLink>
-                    <NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink> 
-                    <Link href='#About' className={classes.navLink}>About</Link>
-                    <Link href='#Contact' className={classes.navLink}>Contact</Link>
+                <Typography  varient='h6'><NavLink to='/' className={classes.navLink}>Home</NavLink></Typography>
+                <Typography  varient='h6'><NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink></Typography> 
+                <Typography  varient='h6' onClick={() => window.scrollTo(1000, 355)} className={classes.navLink}>About</Typography>
+                <Typography  varient='h6'onClick={() => window.scrollTo(1000, 600)}className={classes.navLink}>Contact</Typography>
             </Toolbar>
         </AppBar>
     );

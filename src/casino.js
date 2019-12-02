@@ -1,10 +1,9 @@
-import React, { useState, useEffect, } from 'react';
+import React from 'react';
 
 /* Deck - an array, whcih contains objects, adn each of those objects are cards. */
 const standardDeck = {
     cardsTakenFromLibrary : [],
     library : shuffle([
-        {"rank" : 1, "cardSuit" : "H"},
         {"rank" : 2, "cardSuit" : "H"},
         {"rank" : 3, "cardSuit" : "H"},
         {"rank" : 4, "cardSuit" : "H"},
@@ -19,7 +18,6 @@ const standardDeck = {
         {"rank" : 10, "royality" : "K", "cardSuit" : "H"},
         {"rank" : [11, 1], "royality" : "A", "cardSuit" : "H"},
 
-        {"rank" : 1, "cardSuit" : "D"},
         {"rank" : 2, "cardSuit" : "D"},
         {"rank" : 3, "cardSuit" : "D"},
         {"rank" : 4, "cardSuit" : "D"},
@@ -34,7 +32,6 @@ const standardDeck = {
         {"rank" : 10, "royality" : "K", "cardSuit" : "D"},
         {"rank" : [11, 1], "royality" : "A", "cardSuit" : "D"},
 
-        {"rank" : 1, "cardSuit" : "C"},
         {"rank" : 2, "cardSuit" : "C"},
         {"rank" : 3, "cardSuit" : "C"},
         {"rank" : 4, "cardSuit" : "C"},
@@ -49,7 +46,6 @@ const standardDeck = {
         {"rank" : 10, "royality" : "K", "cardSuit" : "C"},
         {"rank" : [11, 1], "royality" : "A", "cardSuit" : "C"},
 
-        {"rank" : 1, "cardSuit" : "S"},
         {"rank" : 2, "cardSuit" : "S"},
         {"rank" : 3, "cardSuit" : "S"},
         {"rank" : 4, "cardSuit" : "S"},
@@ -102,30 +98,23 @@ const standardDeck = {
         setHand(toDraw);
     };
 
-    
-
-    const [urls, setUrls] = useState([]);
-
-    function useRenderHand(hand, cardFace,) {
+    function useRenderHand(hand, cardFace, urls) {
         
-        useEffect(() => {
-            setUrls(
-                hand.reduce(async (accum, { rank, cardSuit, royality },) => {
-                    let cardImgUrl = 'JPEG/' + (royality ? royality : rank) + cardSuit;
-                    let importUrl = await import('./' + cardImgUrl + '.jpg').then((res) => {
-                        return res.default;
-                    }).catch(error => error);
-                    await accum.push(importUrl);
-                }, [])
-            );
-        }, []);
         
-        return hand.map(({ rank, cardSuit, }, index) => {
-            return <img 
+        return hand.map(({ rank, cardSuit, royality, }) => {
+            let cardImgUrl;
+            if (royality !== undefined) {
+                cardImgUrl = royality + cardSuit;
+            } else {
+                cardImgUrl = rank + cardSuit;
+            };
+            console.log(cardImgUrl, urls[cardImgUrl])
+            return cardFace === 'front' ? <img 
                 className={"card " + cardFace} 
                 key={rank + cardSuit}
-                src={urls[index]} 
-            />
+                src={urls[cardImgUrl]} 
+            /> : <div className={"card " + cardFace} key={rank + cardSuit}></div>
+        
         });
     };
 

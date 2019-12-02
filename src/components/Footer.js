@@ -82,7 +82,11 @@ export default function Footer() {
                                     <TableRow>
                                         <TableCell className={classes.tableCell}></TableCell>
                                         <TableCell className={classes.tableCell}>
-                                            <NavLink to={linksToSite !== 'Home' ? linksToSite : ''} className={classes.tableLinks}>
+                                            <NavLink 
+                                                to={linksToSite !== 'Home' ? linksToSite : ''}
+                                                className={classes.tableLinks} 
+                                                onClick={() => window.scrollTo(1000, 0)}
+                                            >
                                                 {linksToSite}
                                             </NavLink>
                                         </TableCell>

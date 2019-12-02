@@ -40,7 +40,6 @@ const useStyles = makeStyles(theme => ({
         background : lightBlue['A200'],
         color : 'black',
         '&:hover' : {
-            
             color : 'white',
         }
     },   

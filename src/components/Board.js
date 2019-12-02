@@ -1,5 +1,5 @@
 /*IMPORTS*/
-import React, { useState, } from 'react';
+import React, { useState, useReducer, useEffect, } from 'react';
 
 import { 
     Player, 
@@ -17,6 +17,38 @@ import {
 
 /*COMPONENT*/
 export default function Board() {
+
+    const [urls, dispatchUrls] = useReducer((state, {  type, data, propertyName, }) => {
+        switch (type) {
+            case 'FETCH_DATA':
+                return {...state, [propertyName] : data, };
+            break;
+        
+            default:
+                console.log(type, data);
+            break;
+        }
+    }, []);
+
+    useEffect(() => {
+       const mappedUrls = deck.library.map(async ({ rank, cardSuit, royality },) => {
+            console.log(royality);
+            let cardImgUrl;
+            if (royality !== undefined) {
+                cardImgUrl = royality + cardSuit;
+            } else {
+                cardImgUrl = rank + cardSuit;
+            };
+            
+            let importUrl = await import('../JPEG/' +  cardImgUrl + '.jpg').then((res) => {
+                return res.default
+            }).catch(error => error);
+            dispatchUrls({type : 'FETCH_DATA', data : await importUrl, propertyName : cardImgUrl, });
+        });
+        return undefined;
+    }, []);
+
+    
 
     /* HOOKS */
     const [deck, setDeck] = useState(standardDeck);
@@ -175,8 +207,8 @@ export default function Board() {
     return (
         <div className="board grid">
             
-            <h1 className="board--title">Blackjack game</h1>
-            <span className="board--title">Note : aces are low</span>
+            <h1 className="board--title">Blackjack game <span className="board--title">Note : aces are low</span></h1> 
+            
             <div className="board--DisplayOptions">
                 
                 <button onClick={StartGame}>Start Game</button>
@@ -187,23 +219,24 @@ export default function Board() {
                 }}>Stick</button>
                 <button onClick={OpponentTurn}>End Turn</button>
                 <button onClick={Reset}>Reset</button>
+                <div className="divide"></div>
 
                 {isOpponentTurn ? <div className="checkStats"> Opponent Hand Value : {opponent.handValue} </div> : null}
 
-                <p>your current total card value : {player.handValue}</p>
+                <div className="checkStats">your current total card value : {player.handValue}</div>
 
                 {player.hasLost === true || (opponent.handValue > player.handValue && !opponent.hasLost && isOpponentTurn) ? 
-                    <p>You have lost'</p> 
+                    <div className="checkStats">You have lost</div> 
                 : null}
                 {opponent.hasLost === true || (opponent.handValue < player.handValue && !player.hasLost && isOpponentTurn) ?
-                    <p> You have won</p> 
+                    <div className="checkStats"> You have won</div> 
                 : null}
                     
             </div>
-            <Opponents opponent={opponent} isOpponentTurn={isOpponentTurn} />
+            <Opponents opponent={opponent} isOpponentTurn={isOpponentTurn} urls={urls} />
             <Pile pile={pile} />
-            <Player player={player} />
-             
+            <Player player={player} urls={urls} />
+
         </div>
     ); 
 

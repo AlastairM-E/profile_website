@@ -2,7 +2,7 @@
 import React, { Suspense } from 'react'; 
 
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
@@ -11,8 +11,6 @@ import { Navbar, Slider, About, Contact, Footer, } from './components';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-
-
 
 /* STYLES */
 const useStyles = makeStyles(theme => ({
@@ -42,7 +40,7 @@ export default function App() {
                     <Switch>
                         <Route exact path="/" component={Slider} />
                         <Route path="/Portfolio"> 
-                            <div className={classes.centerPiece + 'grid'}>
+                            <div className={classes.centerPiece}>
                             <Suspense fallback={<Typography>Loading, Loading, Loading...</Typography>}>
                                     <LazyPortfolio />
                                 </Suspense>

@@ -5,20 +5,18 @@
     height: 100%;
     display : grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(11, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
 }
 
 .flexbox {
     display: flex;
 }
 
-
-
 .board {
 
-    grid-column: 3/11;
-    grid-row: 3/11;
+    grid-column: 3/10;
+    grid-row: 3/10;
     padding : 5px;
     background: $dark-green;
 
@@ -45,15 +43,22 @@
         justify-content: space-around;
 
         * {
-           padding : none;
-           border : none;
-           align-self: center;
+            align-self: center;
+            text-align: center;
+            border : $border;
         } 
 
         button {
             border : $border;
             height : 45px;
             width : 100px;
+        }
+
+        .checkStats {
+            padding : 9px 2px;
+        }
+        .divide {
+            height: 60;
         }
     }
 
@@ -74,18 +79,24 @@
     .player {
         grid-row: span 2;
         background:white;
-        padding: 5px;
+
     }
 
     .card {
         border : $border;
         padding: 2.5px;
-        margin:5px 10px;
-        .back {
-            background : url('../../JPEG/Red_back.jpg');
-        } 
+        margin:8px 10px;
+        object-fit: cover;
+        
+    }
+    .front {
+        height:83px;
     }
 
-    
+    .back {
+        background : url('../../JPEG/Red_back.jpg');
+        width : 49px;
+        height : 76px;
+    }  
 }
 
