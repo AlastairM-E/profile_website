@@ -38,7 +38,6 @@ export default function Contact() {
                     <Typography className={classes.textBox}>Want to get in touch?</Typography>
                     <Divider />
                     <Button className={classes.emailButton} variant="contained" color="primary" href='mailto:alastair.me.work@gmail.com'>Email Me</Button>
-                    <div id="Contact"></div>
                 </Grid>
             </div>
         </Grid>

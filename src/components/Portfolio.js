@@ -4,13 +4,10 @@ import {
     Grid,
     Typography,
     List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
     Avatar,
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
+    Card,
+    CardContent,
+    CardHeader,
     Link,
 } from '@material-ui/core';
 
@@ -21,27 +18,23 @@ import { lightBlue, } from '@material-ui/core/colors';
 
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 /* STYLES */
 const useStyles = makeStyles(theme => ({
+    projectCard : {
+        margin : '5px',
+    },
+    cardHeader : {
+        paddingBottom : '0px',
+    },
     projectList : {
         margin : '10px',
         width : '98%',
     },
-    accordian : {
-      padding : '0px',
-    },
-    panelSummary : {
-        margin : '0px',
-        paddingLeft : '100px',
-    },
     projectIcon : {
         background : lightBlue['A200'],
         color : 'black',
-        '&:hover' : {
-            color : 'white',
-        }
+        marginRight : '10px',
     },   
 }));
 
@@ -52,21 +45,21 @@ export default function Portfolio() {
 
     const projects = [
         { 
-            icon : <CodeIcon href='https://github.com/AlastairM-E/CasinoJS/tree/CasinoJSv0.5' />, 
-            title : 'BlackJack Simulator', 
+            icon : <CodeIcon />, 
+            title : 'BlackJack Game', 
             techUsed : 'Tech used : HTML, CSS, SASS, JavaScript, React, Git ',
             linkToProject : 
                 <Fragment>
-                    <NavLink to='/CasinoJS'>Demo here</NavLink> | <Link href='https://github.com/AlastairM-E/CasinoJS/tree/CasinoJSv0.5'>Visit Github page here</Link>
+                    <NavLink to='/CasinoJS'>Demo here</NavLink> | <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.1'>Visit Github page here</Link>
                 </Fragment>,
             madeIn : 'September 2019 to current',
-            description : `A website in which a user can play against a (very basic) AI to play a dumbed down version of blackjack (no ability to control turns).`,
+            description : `A webpage in which a user can play blackjack against an AI.`,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/profile_website/tree/PWv0.6' />, 
+            icon : <GitHubIcon />, 
             title : 'Profile webiste (aka, this site)', 
             techUsed : 'Tech used : HTML, CSS, Material-UI, JavaScript, React, React-router-dom, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv0.6'>Vist GitHub page here</Link>,
+            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.1'>Vist GitHub page here</Link>,
             madeIn : 'July 2019 to current',
             description : 
                 `A website that is able to show off various projects I 
@@ -75,19 +68,19 @@ export default function Portfolio() {
             ,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'/>, 
+            icon : <GitHubIcon />, 
             title : 'Python CLI planning tool (called Mirage Dragon)', 
             techUsed : 'Tech used : Python, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'>Vist GitHub here</Link>,
+            linkToProject : <Link href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'>Vist GitHub page here</Link>,
             madeIn : 'March 2019',
             description : 
                 `Enables a user, executing the file in python by a terminal, 
                 to be prompt a series of questions by a CLI, which will lead to 
-                the creation of a planning document (txt file)`
+                the creation of a planning document (txt file).`
             ,
         },
         { 
-            icon : <GitHubIcon href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1' />,
+            icon : <GitHubIcon />,
             title : 'PHP chat application', 
             techUsed : 'Tech used : HTML, CSS, JavaScript, PHP, MYSQL, Git ',
             linkToProject : <Link href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1'>Vist GitHub page here</Link>,
@@ -96,7 +89,7 @@ export default function Portfolio() {
                 `Enables a user to create an account, 
                 sign in with said account to a 'chat room' and then 
                 post comments which others users of the website can 
-                see (not from the same computer)`
+                see (not from the same computer).`
             ,
         },
     ];
@@ -108,31 +101,22 @@ export default function Portfolio() {
                     <List>
                         {projects.map(({ icon, title, techUsed, description, linkToProject, madeIn }) => {
                             return (
-
-                                <ExpansionPanel className={classes.accordian}>
-                                    <ExpansionPanelSummary
-                                        expandIcon={<ExpandMoreIcon className={classes.expandButton} />}
-                                        className={classes.panelSummary}
-                                    >
-                                    
-                                        <ListItem >
-                                            <ListItemAvatar>
-                                                <Avatar className={classes.projectIcon}>{icon}</Avatar>
-                                            </ListItemAvatar>
-                                            <ListItemText primary={title} 
-                                            secondary={
-                                                <Fragment>
-                                                    {techUsed}| Made in : {madeIn}
-                                                    <br />
-                                                    {linkToProject}
-                                                </Fragment>
-                                            }  />
-                                        </ListItem> 
-                                    </ExpansionPanelSummary>
-                                        <ExpansionPanelDetails>
-                                            {description}
-                                        </ExpansionPanelDetails>
-                                </ExpansionPanel>
+                                      
+                                <Card className={classes.projectCard}>
+                                    <CardHeader
+                                        title={<Typography gutterBottom variant="h6" component="h5">{title}</Typography>}
+                                        subheader={<Fragment>
+                                            {linkToProject} 
+                                            <br/> 
+                                            {techUsed} | Made in {madeIn}
+                                        </Fragment>}
+                                        avatar={<Avatar className={classes.projectIcon}>{icon}</Avatar>}
+                                        className={classes.cardHeader}
+                                    />
+                                        <CardContent>
+                                            <Typography>{description}</Typography>
+                                        </CardContent>
+                                </Card>
                                 
                             );
                         })}

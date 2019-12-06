@@ -51,14 +51,23 @@ export default function Footer() {
     const footerRows = [
         { 
             linksToSite : 'Home', 
+            linkTitle : 'Home',
             socialMedia : [
                 'https://github.com/AlastairM-E', 
                 'Github',
             ], 
         },
         { 
+            linksToSite : 'CasinoJS',
+            linkTitle : 'BlackJack Game',
+            socialMedia : [
+                
+            ], 
+        },
+        { 
             linksToSite : 'Portfolio',
-             socialMedia : [
+            linkTitle : 'Portfolio',
+            socialMedia : [
                 
             ], 
         },
@@ -77,7 +86,7 @@ export default function Footer() {
                                     <TableCell className={classes.tableTitle}>Social Media</TableCell>
                                 
                             </TableRow>
-                            {footerRows.map(({linksToSite, socialMedia : [href, title] }) => {
+                            {footerRows.map(({linksToSite, linkTitle, socialMedia : [href, title] }) => {
                                 return (
                                     <TableRow>
                                         <TableCell className={classes.tableCell}></TableCell>
@@ -87,7 +96,7 @@ export default function Footer() {
                                                 className={classes.tableLinks} 
                                                 onClick={() => window.scrollTo(1000, 0)}
                                             >
-                                                {linksToSite}
+                                                {linkTitle}
                                             </NavLink>
                                         </TableCell>
                                         <TableCell className={classes.tableCell}>

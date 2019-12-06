@@ -50,14 +50,23 @@ const useStyles = makeStyles(theme => ({
         },
     },
     SlideTitle : {
-        fontSize: 48,
+        fontSize: 58,
         margin: '5px',
         padding: '5px',
         borderBottom :'2.5px solid black',
+       
     },
     SlideContent : {
-        fontSize: 36,
-        margin: '5%'
+        fontSize: 48,
+        margin: '5%',
+        [theme.breakpoints.between('xs', 'sm')]: {
+            fontSize : 55,
+            padding : '0%',
+            margin : '0%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize : 45,
+        },
     },
     
 }));
@@ -81,14 +90,14 @@ export default function SlideShow() {
             title : 'An overview of what I do', 
             content : 
                 <Typography className={classes.SlideContent}> 
-                    I am an up and coming web developer, specialising in HTML, CSS, SASS, JS and React.
+                    I am currently developing with HTML, CSS, SASS, JS and React.
                 </Typography>, 
         },
         { 
             title : 'My aim', 
             content : 
                 <Typography className={classes.SlideContent}> 
-                    I aim to produce great user interfaces, that help ambitious people & projects reach their full potential.
+                    To work on interesting and challenging projects
                 </Typography>,
         },
         { 

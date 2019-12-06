@@ -64,6 +64,7 @@ export default function Board() {
     });
     const [pile, setPile] = useState([]);
     const [isOpponentTurn, setIsOpponentTurn] = useState(false);
+    const [gameHasStarted, setGameHasStarted] = useState(false);
   
     // keep track of what phraseIndex should stop it is.
     const [phaseIndex, setPhaseIndex] = useState(-1);
@@ -183,11 +184,13 @@ export default function Board() {
         });
         setPhaseIndex(-1);
         setIsOpponentTurn(false);  
+        setGameHasStarted(false);
     };
 
     function StartGame() {
         if (opponent.hand.length === 0 && player.hand.length === 0){
             Turn('auto', 'auto', 2, 2);
+            setGameHasStarted(true);
         } else {
             return null;
         }
@@ -202,7 +205,11 @@ export default function Board() {
         };  
         setIsOpponentTurn(true);     
     };
+
+    const isPlayerPlaying = !gameHasStarted || player.hasLost || opponent.hasLost | isOpponentTurn;
+    const isPlayerLost = !gameHasStarted || !player.hasLost || opponent.hasLost || isOpponentTurn;
    
+
     /* RENDER */
     return (
         <div className="board grid">
@@ -211,14 +218,26 @@ export default function Board() {
             
             <div className="board--DisplayOptions">
                 
-                <button onClick={StartGame}>Start Game</button>
-                <button onClick={() => Turn('auto', 'auto', 1, 0)}>Twist</button>
-                <button onClick={() => {
-                    Turn('auto', 'auto', 0, 0);
-                    OpponentTurn();
+                <button disabled={gameHasStarted} onClick={StartGame}>Start Game</button>
+                <button 
+                    disabled={isPlayerPlaying} 
+                    onClick={() => Turn('auto', 'auto', 1, 0)}
+                >
+                    Twist
+                </button>
+                <button 
+                    disabled={isPlayerPlaying} 
+                    onClick={() => {
+                        Turn('auto', 'auto', 0, 0);
+                        OpponentTurn();
                 }}>Stick</button>
-                <button onClick={OpponentTurn}>End Turn</button>
-                <button onClick={Reset}>Reset</button>
+                <button 
+                    disabled={isPlayerLost} 
+                    onClick={() => player.hasLost ? OpponentTurn() : null}
+                >
+                    Reveal
+                </button>
+                <button disabled={!gameHasStarted} onClick={Reset}>Reset</button>
                 <div className="divide"></div>
 
                 {isOpponentTurn ? <div className="checkStats"> Opponent Hand Value : {opponent.handValue} </div> : null}

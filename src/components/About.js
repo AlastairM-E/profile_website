@@ -123,7 +123,7 @@ export default function About() {
                             </List>
                         <Divider />
                         <ListItem>
-                            <ListItemText> Technologies I have used (to an extent) :</ListItemText>
+                            <ListItemText> Technologies I have used :</ListItemText>
                         </ListItem>
                         <Divider />
                         <List className={classes.cardContentNested}>
@@ -141,12 +141,11 @@ export default function About() {
         {
             icon : <PersonIcon />,
             section : {
-                title : 'Me as a person',
-                subheader : 'Who I actually am',
+                title : 'A bit about me...',
+                subheader : '',
                 content : <Typography className={classes.personSection}> 
                     Hello, I am Alastair Mottram-Epson. I am web developer, keen runner and baker. 
-                    I am looking for ambitious people & projects to collaborate with, who truly want
-                    to make a positive difference in this world.
+                    I want to work on challenging and interesting projects.
                 </Typography>
                 
             }
@@ -155,7 +154,7 @@ export default function About() {
             icon : <WorkIcon />,
             section : {
                 title : 'Work',
-                subheader : 'Here my CV, if your interested',
+                subheader : '',
                 content : 
                 <div className={classes.workSection}>
                     <Button  variant="contained" color="primary" href={pdf}>
@@ -189,7 +188,6 @@ export default function About() {
                             </Grid> 
                         );
                     })}
-                    <div id='About'></div>
             </Grid>
     ); 
 };

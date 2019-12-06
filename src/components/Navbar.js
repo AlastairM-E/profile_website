@@ -37,6 +37,7 @@ export default function Navbar() {
             <Toolbar>
                 <Typography  varient='h6' className={classes.Title}>Alastair M-E</Typography>
                 <Typography  varient='h6'><NavLink to='/' className={classes.navLink}>Home</NavLink></Typography>
+                <Typography  varient='h6'><NavLink to='/CasinoJS' className={classes.navLink}>BlackJack Game</NavLink></Typography>
                 <Typography  varient='h6'><NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink></Typography> 
                 <Typography  varient='h6' onClick={() => window.scrollTo(1000, 355)} className={classes.navLink}>About</Typography>
                 <Typography  varient='h6'onClick={() => window.scrollTo(1000, 600)}className={classes.navLink}>Contact</Typography>
