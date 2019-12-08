@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
     },
     Title: {
         flexGrow: 1,
+        fontSize : '1.5em',
+        [theme.breakpoints.between('xs', 'sm')]: {
+            fontSize : '1.1em',
+        },
     },
     navLink : {
         color : 'white',
@@ -35,7 +39,7 @@ export default function Navbar() {
     return (
         <AppBar className={classes.AppBar} position='static'>
             <Toolbar>
-                <Typography  varient='h6' className={classes.Title}>Alastair M-E</Typography>
+                <Typography  varient='h6' className={classes.Title}>Alastair Mottram-Epson</Typography>
                 <Typography  varient='h6'><NavLink to='/' className={classes.navLink}>Home</NavLink></Typography>
                 <Typography  varient='h6'><NavLink to='/CasinoJS' className={classes.navLink}>BlackJack Game</NavLink></Typography>
                 <Typography  varient='h6'><NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink></Typography> 

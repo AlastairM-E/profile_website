@@ -129,10 +129,61 @@ const standardDeck = {
     };
 
     function run(phaseArray) {
+        if (phaseArray === 'finished') {
+            return null;
+        };
         phaseArray.forEach(({ procedure, }) => {
             procedure();
         });
     };
+
+    //setPhaseIndex(-1);
+    // keep track of what phraseIndex should stop it is.
+    //const [phaseIndex, setPhaseIndex] = useState(-1);
+    
+    // function runPhase(phaseArray){
+    //     //if the phasearray is finished, e.g. one the player has lost, disable the button
+    //     if (phaseArray === 'finished') {
+    //         return null;
+    //     };
+
+    //     console.log(phaseIndex);
+
+    //     //Checks what phase is needed to break next.
+    //     //States what index should be skipped on the next follow through of the phases.
+    //     //the index check should be -1 at the start, or the phaseIndex, if th ephase index has changed value.
+        
+    //     //For loop going through all the phases;
+    //     // spilt the type (whether their needs to be a pause or not) 
+    //     //and procedure (the actually function that execute the logic in the phases) 
+    //     //of the current phases
+    //     for (let i = 0; i < phaseArray.length; i++) {
+            
+    //         let { type, procedure, } = phaseArray[i];
+
+    //         //check if the indexCheck is greater than current phase 
+    //         //(therefore should be skipped as this phase has already been done in the past)
+    //         if (phaseIndex < i) {
+    //             //set the index check to be i, so that if the next phase were to cancel the phases, 
+    //             //it will store that this phase should block it.
+    //             //if break check is true , break the loop and then recharge the entire thing.
+    //                 procedure();
+    //                 setPhaseIndex(i);
+    //                 if (type === 'playerAction') {
+    //                     break;
+    //                 };
+                    
+    //         // skip the pahse if it has already in done in the previous turn, this is only to clear up all pahses that weer preivous blocked off.
+    //         } else {
+    //             continue;
+    //         };
+
+    //     };
+    //     //set the pahse array to be the reset (if it the last index nnumebr of the phaseArray, 
+    //     //or set as indexCheck to skip all turns that have already been done.)
+    //     console.log(phaseIndex, phaseArray.length);
+    //     setPhaseIndex(phaseIndex => phaseIndex === phaseArray.length -1 ? -1 : phaseIndex);
+    // };
 
 /* EXPORTS */
 export {
