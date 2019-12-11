@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     cardHeader : {
         paddingBottom : '0px',
     },
+    projectLink : {
+        textDecoration : 'none',
+    },
     projectList : {
         margin : '10px',
         width : '98%',
@@ -36,6 +39,9 @@ const useStyles = makeStyles(theme => ({
         color : 'black',
         marginRight : '10px',
     },   
+    projectDescription : {
+        marginLeft : '67.5px',
+    },
 }));
 
 /*COMPONENT*/
@@ -46,51 +52,44 @@ export default function Portfolio() {
     const projects = [
         { 
             icon : <CodeIcon />, 
-            title : 'BlackJack Game', 
-            techUsed : 'Tech used : HTML, CSS, SASS, JavaScript, React, Git ',
+            title : <NavLink to='/CasinoJS' className={classes.projectLink}>Blackjack Game</NavLink>, 
+            techUsed : 'Tech used : JavaScript, React, HTML, CSS, SASS, Git',
             linkToProject : 
                 <Fragment>
-                    <NavLink to='/CasinoJS'>Demo here</NavLink> | <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.1'>Visit Github page here</Link>
+                     <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.3'>View code on Github</Link>
                 </Fragment>,
-            madeIn : 'September 2019 to current',
-            description : `A webpage in which a user can play blackjack against an AI.`,
-        },
-        { 
-            icon : <GitHubIcon />, 
-            title : 'Profile webiste (aka, this site)', 
-            techUsed : 'Tech used : HTML, CSS, Material-UI, JavaScript, React, React-router-dom, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.1'>Vist GitHub page here</Link>,
-            madeIn : 'July 2019 to current',
-            description : 
-                `A website that is able to show off various projects I 
-                have developed for fun and show potential employers
-                who I am and what I can do.`
-            ,
-        },
-        { 
-            icon : <GitHubIcon />, 
-            title : 'Python CLI planning tool (called Mirage Dragon)', 
-            techUsed : 'Tech used : Python, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'>Vist GitHub page here</Link>,
-            madeIn : 'March 2019',
-            description : 
-                `Enables a user, executing the file in python by a terminal, 
-                to be prompt a series of questions by a CLI, which will lead to 
-                the creation of a planning document (txt file).`
-            ,
+            madeIn : 'September 2019 - ',
+            description : <NavLink to='/CasinoJS' className={classes.projectLink}>Demo here</NavLink>,
         },
         { 
             icon : <GitHubIcon />,
-            title : 'PHP chat application', 
-            techUsed : 'Tech used : HTML, CSS, JavaScript, PHP, MYSQL, Git ',
-            linkToProject : <Link href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1'>Vist GitHub page here</Link>,
-            madeIn : 'June 2018 to January 2019',
+            title : 'PHP Chat Application', 
+            techUsed : 'Tech used : PHP, JavaScript, MYSQL, CSS, HTML, Git ',
+            linkToProject : <Link href='https://github.com/AlastairM-E/chat-application-basic-/tree/PHPv0.1'>View code on Github</Link>,
+            madeIn : 'June 2018 - January 2019',
             description : 
                 `Enables a user to create an account, 
-                sign in with said account to a 'chat room' and then 
-                post comments which others users of the website can 
-                see (not from the same computer).`
+                login and then post comments which others 
+                website users can view and respond to.`
             ,
+        },
+        { 
+            icon : <GitHubIcon />, 
+            title : 'Python Command Line Interface Planning Tool', 
+            techUsed : 'Tech used : Python, Git ',
+            linkToProject : <Link href='https://github.com/AlastairM-E/Mirage_Dragon/tree/MDv0.5'>View code on Github</Link>,
+            madeIn : 'March 2019',
+            description : 
+                `CLI program executed in Python that gathers input from a user to create a planning document (txt file).`
+            ,
+        },
+        { 
+            icon : <GitHubIcon />, 
+            title : 'Alastair Mottram-Epson Website', 
+            techUsed : 'Tech used : HTML, CSS, Material-UI, JavaScript, React, React-router-dom, Git ',
+            linkToProject : <Link href='https://github.com/AlastairM-E/profile_website/tree/PWv1.3'>View code on Github</Link>,
+            madeIn : 'July 2019 - ',
+            description : ``,
         },
     ];
 
@@ -104,17 +103,13 @@ export default function Portfolio() {
                                       
                                 <Card className={classes.projectCard}>
                                     <CardHeader
-                                        title={<Typography gutterBottom variant="h6" component="h5">{title}</Typography>}
-                                        subheader={<Fragment>
-                                            {linkToProject} 
-                                            <br/> 
-                                            {techUsed} | Made in {madeIn}
-                                        </Fragment>}
+                                        title={<Typography gutterBottom variant="h6" component="h5">{title} ({madeIn})</Typography>}
+                                        subheader={<Fragment> {techUsed} | {linkToProject} </Fragment>}
                                         avatar={<Avatar className={classes.projectIcon}>{icon}</Avatar>}
                                         className={classes.cardHeader}
                                     />
                                         <CardContent>
-                                            <Typography>{description}</Typography>
+                                            <Typography className={classes.projectDescription}>{description}</Typography>
                                         </CardContent>
                                 </Card>
                                 

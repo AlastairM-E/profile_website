@@ -23,13 +23,17 @@
     * {
         border: $border;
         grid-column: span 12;
+        font-size : 16;
     }
 
     .board--title {
         grid-row: span 1;
         margin : 5px;
         grid-column: span 12;
-        color : red;
+        border : none;
+        color : rgb(141, 26, 22);
+        text-align: center;
+        font-size : 24;
     }
 
     .board--DisplayOptions {
@@ -58,9 +62,9 @@
             justify-content: space-around;
             border : none;
             * {
-                padding : 9px 2px;
+                padding : 9px 10px;
                 margin : 0px 5px;
-
+                border : 0.25px solid black;
             } 
         }
         .divide {
@@ -71,25 +75,36 @@
     .opponents {
         grid-row: span 2;
         background:white; 
+        padding : 7.5px;
+        .card {
+            &:first-child {
+                margin-left: 35px;
+            }
+            
+        }
     }
 
     .pile {
-        grid-row: span 4;
+        grid-row: span 2;
         background:$light-green;
+        text-align: center;
 
         .deck {
             object-fit: cover;
+            border : 0.25px solid black;
+            margin: 15px;
         }
     }
 
     .player {
         grid-row: span 2;
         background:white;
+        padding : 7.5px;
 
     }
 
     .card {
-        border : $border;
+        border : 0.25px solid black;
         padding: 2.5px;
         margin:8px 10px;
         object-fit: cover;

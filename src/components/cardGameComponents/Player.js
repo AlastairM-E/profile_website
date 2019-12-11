@@ -7,7 +7,7 @@ export default function Player({ player : { hand,   }, urls, },) {
     return (
         <Fragment>
             <div className="player flexbox">
-                Player Hand
+                Your Hand
                 {useRenderHand(hand, 'front', urls,)}
             </div>
         </Fragment>

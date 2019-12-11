@@ -59,7 +59,7 @@ export default function Footer() {
         },
         { 
             linksToSite : 'CasinoJS',
-            linkTitle : 'BlackJack Game',
+            linkTitle : 'Blackjack Game',
             socialMedia : [
                 
             ], 
@@ -81,7 +81,7 @@ export default function Footer() {
                             <TableRow>
                                     
                                     <Typography></Typography>
-                                    <Typography className={classes.Title}>AlastairM-E</Typography>
+                                    <Typography className={classes.Title}>Alastair Mottram-Epson</Typography>
                                     <TableCell className={classes.tableTitle}>Site Navigation</TableCell>
                                     <TableCell className={classes.tableTitle}>Social Media</TableCell>
                                 

@@ -120,7 +120,8 @@ const standardDeck = {
 
     function rankHand(thisAgent, hand, handValue, hasLost, ) {
         const rankOfHand = thisAgent[hand].reduce((sumOfRank, card) => {
-            let cardRank = Array.isArray(card.rank) ? card.rank[1] : card.rank;
+            let aceIsHighOrLow = (sumOfRank + 11) > 21 ? 1 : 0;
+            let cardRank = Array.isArray(card.rank) ? card.rank[aceIsHighOrLow] : card.rank;
             return sumOfRank + cardRank;
         }, 0);
         thisAgent[handValue] = rankOfHand;

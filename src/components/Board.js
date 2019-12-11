@@ -146,15 +146,16 @@ export default function Board() {
             setGameHasStarted(true);
         } else {
             return null;
-        }
+        };
     };
 
     function OpponentTurn() {
         for (let index = 0; index < opponent.hand.length; index++) {
-            Turn('auto', 'auto', 0, 1);
-            if (opponent.HasLost || opponent.handValue === 21) {
+            if (opponent.HasLost || opponent.handValue >= 16) {
                 break;
-            };
+            } else {
+                Turn('auto', 'auto', 0, 1);
+            };  
         };  
         setIsOpponentTurn(true);     
     };
@@ -163,7 +164,7 @@ export default function Board() {
     return (
         <div className="board grid">
             
-            <h1 className="board--title">Blackjack game</h1> 
+            <h1 className="board--title">Blackjack</h1> 
             <DisplayBoard 
                 Turn={Turn}
                 gameHasStarted={gameHasStarted}

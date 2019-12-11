@@ -11,10 +11,14 @@ import { lightBlue, } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
     AppBar : {
         background : lightBlue[400],
+        height : '12vh',
+    },
+    Toolbar : {
+        margin: '0.5% 0% 0% 0%',
     },
     Title: {
         flexGrow: 1,
-        fontSize : '1.5em',
+        fontSize: 42,
         [theme.breakpoints.between('xs', 'sm')]: {
             fontSize : '1.1em',
         },
@@ -25,7 +29,8 @@ const useStyles = makeStyles(theme => ({
         margin : '0px 10px',
         '&:hover' : {
             textDecoration: 'underline',
-        }
+        },
+        fontSize : 20,
     },
 }));
 
@@ -38,10 +43,10 @@ export default function Navbar() {
     /* RENDER */
     return (
         <AppBar className={classes.AppBar} position='static'>
-            <Toolbar>
+            <Toolbar className={classes.Toolbar}>
                 <Typography  varient='h6' className={classes.Title}>Alastair Mottram-Epson</Typography>
                 <Typography  varient='h6'><NavLink to='/' className={classes.navLink}>Home</NavLink></Typography>
-                <Typography  varient='h6'><NavLink to='/CasinoJS' className={classes.navLink}>BlackJack Game</NavLink></Typography>
+                <Typography  varient='h6'><NavLink to='/CasinoJS' className={classes.navLink}>Blackjack</NavLink></Typography>
                 <Typography  varient='h6'><NavLink to='/Portfolio' className={classes.navLink}>Portfolio</NavLink></Typography> 
                 <Typography  varient='h6' onClick={() => window.scrollTo(1000, 355)} className={classes.navLink}>About</Typography>
                 <Typography  varient='h6'onClick={() => window.scrollTo(1000, 600)}className={classes.navLink}>Contact</Typography>

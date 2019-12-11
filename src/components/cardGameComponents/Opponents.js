@@ -9,7 +9,7 @@ export default function Opponents({ opponent, isOpponentTurn, urls, },) {
     /* RENDER */
     return (
         <div className="opponents flexbox">
-            Opponent Hand
+            Dealer
             {isOpponentTurn ? useRenderHand(opponent.hand, 'front', urls,) : useRenderHand(opponent.hand, 'back', urls,)}
         </div>
     ); 

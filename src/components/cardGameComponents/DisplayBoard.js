@@ -22,10 +22,10 @@ export default function DisplayBoard({
     };
 
     function hasDrawn(agent, opposition, message) {
-        if (agent.handValue === 21 && opposition.handValue === 21 && isOpponentTurn) {
+        if (agent.handValue === opposition.handValue && isOpponentTurn && agent.handValue <= 21) {
             return <div>{message}</div>
-        }
-    }
+        };
+    };
 
     const isPlayerPlaying = !gameHasStarted || player.hasLost || opponent.hasLost | isOpponentTurn;
     const isPlayerLost = !gameHasStarted || !player.hasLost || opponent.hasLost || isOpponentTurn;
@@ -57,12 +57,12 @@ export default function DisplayBoard({
             <div className="divide"></div>
 
             <div className="checkStats">
-                <div>your current total card value : {player.handValue}</div> 
-                {isOpponentTurn ? <div> Opponent Hand Value : {opponent.handValue} </div> : null}
+                <div>Your Hand : {player.handValue}</div> 
+                {isOpponentTurn ? <div> Dealer : {opponent.handValue} </div> : null}
 
                 {gameStateMessage(player, opponent,  'You have Won')}
                 {gameStateMessage(opponent, player, 'You have Lost')}
-                {hasDrawn(player, opponent, 'You have Drawn')}
+                {hasDrawn(player, opponent, 'You have Lost')}
             </div>    
         </div>
     ); 

@@ -15,7 +15,7 @@ import {
     Button,
 } from '@material-ui/core';
 
-import pdf from './../CV--19.11.18--v0.4.pdf';
+import pdf from './../Alastair_Mottram-Epson_cv_111219.pdf';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft : '30px',
     },
     title : {
-        fontSize : '3em',
+        fontSize : 42,
         color : 'white',
         margin : '10px',
     },
@@ -55,6 +55,9 @@ const useStyles = makeStyles(theme => ({
             marginLeft : '2.5%'
         },
     },
+    cardTitle : {
+        fontSize : 20,
+    },
     cardIcon : {
         background : lightBlue['A200'],
         
@@ -71,7 +74,7 @@ const useStyles = makeStyles(theme => ({
         fontSize : '0.3em',
     },
     personSection : {
-        marginTop : '10%',
+        marginTop : '5%',
     },
     workSection : {
         display : 'flex',
@@ -102,8 +105,8 @@ export default function About() {
         {
             icon : <CodeIcon />,
             section : {
-                title : 'Code',
-                subheader : 'Quick summary of my skill set',
+                title : 'Skill Set',
+                subheader : '',
                 content : 
                     <List className={classes.list}>
                         <Divider />
@@ -144,8 +147,10 @@ export default function About() {
                 title : 'A bit about me...',
                 subheader : '',
                 content : <Typography className={classes.personSection}> 
-                    Hello, I am Alastair Mottram-Epson. I am web developer, keen runner and baker. 
-                    I want to work on challenging and interesting projects.
+                    I am building my skills as a web developer and studying for my A levels in 2020.
+                    <br />
+                    <br />
+                    I am also a keen runner, county level chess player and like to bake bread. 
                 </Typography>
                 
             }
@@ -153,7 +158,7 @@ export default function About() {
         {
             icon : <WorkIcon />,
             section : {
-                title : 'Work',
+                title : 'CV',
                 subheader : '',
                 content : 
                 <div className={classes.workSection}>
@@ -178,7 +183,7 @@ export default function About() {
                             <Grid xs={12} sm={12} md={4}>
                                 <Card className={classes.card}>
                                     <CardHeader
-                                        title={title}
+                                        title={<Typography className={classes.cardTitle}>{title}</Typography>}
                                         subheader={subheader}
                                         avatar={<Avatar className={classes.cardIcon}>{icon}</Avatar>}
                                         className={classes.cardHeader}

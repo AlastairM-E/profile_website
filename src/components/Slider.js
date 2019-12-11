@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
        width: '100%',
     },
     Slide : {
-        height : '50vh',
+        height : '45vh',
         [theme.breakpoints.between('sm', 'md')]: {
             height : '60vh',
         },
@@ -50,15 +50,16 @@ const useStyles = makeStyles(theme => ({
         },
     },
     SlideTitle : {
-        fontSize: 58,
+        fontSize: 42,
         margin: '5px',
         padding: '5px',
         borderBottom :'2.5px solid black',
        
     },
     SlideContent : {
-        fontSize: 48,
+        fontSize: 38,
         margin: '5%',
+        marginTop : '1.5%',
         [theme.breakpoints.between('xs', 'sm')]: {
             fontSize : 55,
             padding : '0%',
@@ -68,7 +69,9 @@ const useStyles = makeStyles(theme => ({
             fontSize : 45,
         },
     },
-    
+    noLink : {
+        textDecoration : 'none',
+    },
 }));
 
 
@@ -83,30 +86,32 @@ export default function SlideShow() {
     const [shouldReset, setShouldReset ] = useState(false);
     const classes = useStyles();
 
-    const slideShowPace = 4500;
+    const slideShowPace = 7000;
 
     const slides = [
         { 
-            title : 'An overview of what I do', 
+            title : 'My Skill Set', 
             content : 
                 <Typography className={classes.SlideContent}> 
-                    I am currently developing with HTML, CSS, SASS, JS and React.
+                    Good working knowledge of HTML, CSS, SASS, JS & React.
+                    <br />
+                    Some experience in Python, PHP and MySQL.
                 </Typography>, 
         },
         { 
             title : 'My aim', 
             content : 
                 <Typography className={classes.SlideContent}> 
-                    To work on interesting and challenging projects
+                    To learn new technologies and work on interesting and challenging projects.
                 </Typography>,
         },
         { 
-            title : 'Portfolio Projects', 
+            title : 'Experience', 
             content : 
                 <Typography className={classes.SlideContent}>
-                    Here are some of my projects.
-                    <br />
-                    <NavLink to='/Portfolio'>learn more</NavLink>
+                    My <NavLink to='/Portfolio' className={classes.noLink}>Projects</NavLink> include : 
+                    <br />  
+                    <NavLink to='/CasinoJS' className={classes.noLink}>Blackjack Game</NavLink> | PHP Chat application | Python CLI
                 </Typography>, 
         },
     ];
