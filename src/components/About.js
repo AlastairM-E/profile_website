@@ -15,7 +15,7 @@ import {
     Button,
 } from '@material-ui/core';
 
-import pdf from './../Alastair_Mottram-Epson_cv_111219.pdf';
+import pdf from './../Alastair_Mottram-Epson--CV--20.01.08.pdf';
 
 import { makeStyles, } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
@@ -99,7 +99,7 @@ export default function About() {
     const classes = useStyles();
     const [techKnow, techExperienced] = [
         [['HTML, ', 'CSS, ', 'SASS, ', 'JavaScript, ', 'React, ', 'Git.']],
-        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel.']],
+        [['Material UI, ', 'Python, ', 'PHP, ', 'MYSQL, ', 'Webpack, ', 'Babel, ', 'Jest.']],
     ];
     const sections = [
         {

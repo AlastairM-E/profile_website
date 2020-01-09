@@ -61,7 +61,8 @@ export default function Footer() {
             linksToSite : 'CasinoJS',
             linkTitle : 'Blackjack Game',
             socialMedia : [
-                
+                'https://www.linkedin.com/in/alastair-mottram-epson-b5841119a/',
+                'Linkedin'
             ], 
         },
         { 

@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
             height : '60vh',
         },
         [theme.breakpoints.between('xs', 'sm')]: {
-            height : '70vh',
+            height : '95vh',
         },
     },
     SlideTitle : {

@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
             textDecoration: 'underline',
         },
         fontSize : 20,
+        [theme.breakpoints.between('xs', 'sm')]: {
+            fontSize : '1em',
+        },
     },
 }));
 
