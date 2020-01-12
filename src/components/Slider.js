@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef, Fragment,  } from 'react';
 
-import { Paper, Typography, Grid, Fab, Link, } from '@material-ui/core';
+import { Paper, Typography, Grid, Fab, } from '@material-ui/core';
 import { grey, lightBlue, } from '@material-ui/core/colors';
 import { makeStyles, } from '@material-ui/core/styles';
 
@@ -176,6 +176,27 @@ export default function SlideShow() {
 
     /* SlideButtons COMPOMENT */
    const SlideButtons = () => {
+        function rankOfSlide(ranksAsIndex) {
+            switch (ranksAsIndex) {
+                case 0:
+                    return '1st'
+                break;
+
+                case 1:
+                    return '2nd'
+                break;
+
+                case 2:
+                    return '3rd'
+                break;
+            
+                default:
+                    return 'nth'
+                break;
+            }
+        }
+
+
         if (Array.isArray(slides)) {
              let ButtonsArray = [];
              for (let index = 0; index < slides.length; index++) {
@@ -186,8 +207,8 @@ export default function SlideShow() {
                         key={id}
                         className={[index === slideState ? classes.FabActive : '', classes.Fab]} 
                         onClick={() => onClickSlideButton(index)}
-                    >
-                    </Fab>
+                        aria-label={`slide button for the ${rankOfSlide} slide`}
+                    />
                 );  
              };
              return <Grid className={classes.buttonArray} xs={8} sm={7} md={4} lg={3}>{ButtonsArray}</Grid>;

@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
         width : '98%',
     },
     projectIcon : {
-        background : lightBlue['A200'],
+        background : lightBlue[600],
         color : 'black',
         marginRight : '10px',
     },   

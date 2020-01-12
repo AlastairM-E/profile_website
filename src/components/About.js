@@ -1,5 +1,5 @@
 /*IMPORTS*/
-import React from 'react'; 
+import React, { Fragment } from 'react'; 
 
 import { 
     Grid, 
@@ -18,7 +18,7 @@ import {
 import pdf from './../Alastair_Mottram-Epson--CV--20.01.08.pdf';
 
 import { makeStyles, } from '@material-ui/core/styles';
-import { lightBlue } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 import CodeIcon from '@material-ui/icons/Code';
 import PersonIcon from '@material-ui/icons/Person';
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         width : '100%',
         display : 'flex',
         justifyContent : 'space-evenly',
-        background : lightBlue['A200'],
+        background : blue[600],
         paddingLeft : '30px',
     },
     title : {
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
         fontSize : 20,
     },
     cardIcon : {
-        background : lightBlue['A200'],
+        background : blue[600],
         
     },
     list : {
@@ -108,38 +108,24 @@ export default function About() {
                 title : 'Skill Set',
                 subheader : '',
                 content : 
-                    <List className={classes.list}>
+                    <Fragment>
                         <Divider />
-                        <ListItem>
-                            <ListItemText> I develop with :</ListItemText>
-                        </ListItem>
-                        <Divider />
-                            <List className={classes.cardContentNested}>
-                                {techKnow.map(tech => {
-                                    return (
-                                        <ListItem className={classes.techList}>
-                                            <ListItemText className={classes.techListText}> - {tech}</ListItemText>
-                                        </ListItem>
-                                    );
-                                })}
-                                
-                            </List>
-                        <Divider />
-                        <ListItem>
-                            <ListItemText> Technologies I have used :</ListItemText>
-                        </ListItem>
-                        <Divider />
-                        <List className={classes.cardContentNested}>
-                            {techExperienced.map(tech => {
-                                return (
-                                    <ListItem className={classes.techList}>
-                                        <ListItemText className={classes.techListText}> - {tech}</ListItemText>
-                                    </ListItem>
-                                );
-                            })}
-                        </List>
-                    </List>,
-            }
+                        <List className={classes.list}>
+                            <ListItem>
+                                <ListItemText> I develop with :</ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText className={classes.techListText}> - {techKnow}</ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText> Technologies I have used :</ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                    <ListItemText className={classes.techListText}> - {techExperienced}</ListItemText>
+                            </ListItem>
+                        </List>,
+                    </Fragment>
+            },     
         },
         {
             icon : <PersonIcon />,

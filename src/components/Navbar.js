@@ -5,12 +5,12 @@ import { NavLink, } from 'react-router-dom';
 
 import { AppBar, Toolbar, Typography, } from '@material-ui/core';
 import { makeStyles, } from '@material-ui/core/styles';
-import { lightBlue, } from '@material-ui/core/colors';
+import { blue, } from '@material-ui/core/colors';
 
 /* STYLES */
 const useStyles = makeStyles(theme => ({
     AppBar : {
-        background : lightBlue[400],
+        background : blue[600],
         height : '12vh',
     },
     Toolbar : {

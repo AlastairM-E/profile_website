@@ -3,9 +3,9 @@ import React from 'react';
 
 import { NavLink, } from 'react-router-dom';
 
-import { Table, Grid, Paper, TableHead, TableRow, TableCell, Link, Typography, } from '@material-ui/core';
+import { Table,  Paper, TableHead, TableRow, TableCell, Link, Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { lightBlue, grey, } from '@material-ui/core/colors';
+import { blue, grey, } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     root: {
@@ -14,22 +14,24 @@ const useStyles = makeStyles({
     },
     table: {
       minWidth: 450,
-      background : lightBlue[400],
+      background : blue[600],
       padding : '100px',
       
     },
     Title : {
-        color : grey[50],
+        color : 'white',
         padding : '8px 10px 8px 10px',
+        fontSize:'2em',
     },
     tableCell : {
         color : grey[50],
         padding : '8px 10px 8px 10px',
         border : 'none',
+        fontSize:'1.5em',
     },
     tableTitle : {
         color : grey[50],
-        
+        fontSize:'1.5em',
     },
     tableLinks : {
         color : grey[50],
@@ -40,6 +42,7 @@ const useStyles = makeStyles({
     },
     icon : {
         marginUp : '10px',
+        fontSize:'1em',
     }
 });
 
