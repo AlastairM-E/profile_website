@@ -4,10 +4,10 @@ import { Deck, } from './index';
 
 /*COMPONENT*/
 export default function Pile() {
-
+    //drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}
     return (
         <div className="pile">
-            <Deck drawFromDeck={() => drawFromDeck(deck, setDeck, player, 1, setPlayer,)}/>
+            <Deck />
         </div>
     ); 
 

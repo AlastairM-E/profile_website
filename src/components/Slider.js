@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, Fragment,  } from 'react';
 
 import { Paper, Typography, Grid, Fab, } from '@material-ui/core';
@@ -86,7 +85,7 @@ export default function SlideShow() {
     const [shouldReset, setShouldReset ] = useState(false);
     const classes = useStyles();
 
-    const slideShowPace = 7000;
+    const sevenSeconds = 7000;
 
     const slides = [
         { 
@@ -142,7 +141,8 @@ export default function SlideShow() {
                 setShouldReset(false);
                 setResetTime(0);
             };
-    }, !shouldReset ? slideShowPace : resetTime);
+    }, !shouldReset ? 
+    sevenSeconds : resetTime);
 
     /* onClickSlideButton EVENTLISTENER */
     const onClickSlideButton = (slideIndex) => {
